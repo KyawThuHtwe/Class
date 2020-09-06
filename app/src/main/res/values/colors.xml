@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#0b144c</color>
+    <color name="colorPrimaryDark">#0b144c</color>
+    <color name="colorAccent">#408ded</color>
+    <color name="colorWhite">#ffff</color>
+    <color name="colorTextPrimary">#212121</color>
+    <color name="colorTextSecondary">#757575</color>
+    <color name="colorTextHint">#bdbdbd</color>
+    <color name="colorSelectedMenu">#408ded</color>
+    <color name="colorBackground">@android:color/holo_orange_light</color>
+    <color name="colorCardView">@android:color/holo_orange_light</color>
+    <color name="colorDivider">#ECECEC</color>
+    <color name="colorSpinner">#E3B958</color>
+    <color name="colorTime">#D81B60</color>
+</resources>

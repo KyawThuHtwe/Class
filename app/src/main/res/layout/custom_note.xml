@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <androidx.cardview.widget.CardView
+        android:layout_marginBottom="@dimen/_3sdp"
+        android:layout_marginTop="@dimen/_3sdp"
+        android:layout_marginRight="@dimen/_3sdp"
+        android:layout_marginLeft="@dimen/_3sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/layout"
+            android:background="@color/colorCardView"
+            android:padding="@dimen/_10sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:paddingBottom="@dimen/_5sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_alignParentLeft="true"
+                    android:gravity="center"
+                    android:padding="@dimen/_5sdp"
+                    android:background="@drawable/action"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/_12ssp"
+                    android:id="@+id/date1"
+                    android:text="@string/_12"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true" />
+                <TextView
+                    android:layout_toRightOf="@id/date1"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:gravity="center"
+                    android:padding="@dimen/_5sdp"
+                    android:background="@drawable/action"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/_12ssp"
+                    android:id="@+id/date2"
+                    android:text="@string/_12"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/date1" />
+                <TextView
+                    android:layout_toRightOf="@id/date2"
+                    android:gravity="center"
+                    android:padding="@dimen/_5sdp"
+                    android:background="@drawable/action"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/_12ssp"
+                    android:id="@+id/date3"
+                    android:text="@string/_2020"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/date2" />
+                <TextView
+                    android:padding="@dimen/_5sdp"
+                    android:background="@drawable/action"
+                    android:textColor="@color/colorTime"
+                    android:textSize="@dimen/_12ssp"
+                    android:id="@+id/time"
+                    android:layout_alignParentRight="true"
+                    android:text="@string/time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    tools:ignore="RelativeOverlap" />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:padding="@dimen/_5sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textColor="@color/colorTextPrimary"
+                    android:textSize="@dimen/_14ssp"
+                    android:id="@+id/type"
+                    android:text="@string/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </RelativeLayout>
+            <TextView
+                android:paddingLeft="@dimen/_5sdp"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="@dimen/_14ssp"
+                android:id="@+id/subject"
+                android:text="@string/subject"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_margin="@dimen/_5sdp"
+                android:padding="@dimen/_5sdp"
+                android:background="@android:color/holo_red_light"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/_12ssp"
+                android:id="@+id/day_left"
+                android:text="@string/day"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:ignore="RelativeOverlap" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

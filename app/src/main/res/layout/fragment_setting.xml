@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragments.SettingFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.cardview.widget.CardView
+            android:layout_margin="@dimen/_3sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:background="@color/colorCardView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:textSize="@dimen/_14ssp"
+                    android:textStyle="bold"
+                    android:padding="@dimen/_10sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@+id/bg"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:textColor="@color/colorTextPrimary"
+                    android:text="@string/setting"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <View
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:background="@color/colorDivider"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1ssp"/>
+                <RelativeLayout
+                    android:focusable="true"
+                    android:clickable="true"
+                    android:id="@+id/note"
+                    android:padding="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:tint="@color/colorTextPrimary"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/deleteNote1"
+                        android:padding="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_delete"
+                        tools:ignore="UseAppTint" />
+                    <TextView
+                        android:textColor="@color/colorTextPrimary"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/deleteNote1"
+                        android:paddingRight="5dp"
+                        android:textSize="@dimen/_12ssp"
+                        android:text="Note Database"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/timetable"
+                    android:padding="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:tint="@color/colorTextPrimary"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/deleteicon1"
+                        android:padding="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_delete"
+                        tools:ignore="UseAppTint" />
+                    <TextView
+                        android:textColor="@color/colorTextPrimary"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/deleteicon1"
+                        android:paddingRight="5dp"
+                        android:textSize="@dimen/_12ssp"
+                        android:text="Time Database"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/rollcall"
+                    android:padding="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:tint="@color/colorTextPrimary"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/deleteicon2"
+                        android:padding="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_delete"
+                        tools:ignore="UseAppTint" />
+                    <TextView
+                        android:textColor="@color/colorTextPrimary"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/deleteicon2"
+                        android:paddingRight="5dp"
+                        android:textSize="@dimen/_12ssp"
+                        android:text="Attendance Database"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </RelativeLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_marginLeft="@dimen/_3sdp"
+            android:layout_marginRight="@dimen/_3sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:background="@color/colorCardView"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    app:layout_constraintBottom_toBottomOf="@+id/communicate"
+                    android:textColor="@color/colorTextPrimary"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/_14ssp"
+                    android:padding="@dimen/_10sdp"
+                    android:text="@string/communicate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <View
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:background="@color/colorDivider"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1ssp"/>
+
+                <RelativeLayout
+                    android:id="@+id/share"
+                    android:padding="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:tint="@color/colorTextPrimary"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/shareicon"
+                        android:padding="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_share"
+                        tools:ignore="UseAppTint" />
+                    <TextView
+                        android:textColor="@color/colorTextPrimary"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/shareicon"
+                        android:paddingRight="5dp"
+                        android:textSize="@dimen/_12ssp"
+                        android:text="Share"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/feedback"
+                    android:padding="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:tint="@color/colorTextPrimary"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/feedbackicone"
+                        android:padding="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_feedback"
+                        tools:ignore="UseAppTint" />
+                    <TextView
+                        android:textColor="@color/colorTextPrimary"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/feedbackicone"
+                        android:paddingRight="5dp"
+                        android:textSize="@dimen/_12ssp"
+                        android:text="Feedback"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/about"
+                    android:padding="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:tint="@color/colorTextPrimary"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/abouticon"
+                        android:padding="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_baseline_info_24"
+                        tools:ignore="UseAppTint" />
+                    <TextView
+                        android:textColor="@color/colorTextPrimary"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/abouticon"
+                        android:paddingRight="5dp"
+                        android:textSize="@dimen/_12ssp"
+                        android:text="About"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+</FrameLayout>

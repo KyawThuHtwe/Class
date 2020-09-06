@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/idlayout">
+    <LinearLayout
+        android:background="@color/colorCardView"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent">
+        <androidx.cardview.widget.CardView
+            app:cardCornerRadius="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1dp">
+            <LinearLayout
+                android:background="@android:color/white"
+                android:gravity="center"
+                android:layout_gravity="center_vertical|center"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize">
+                <ImageView
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:id="@+id/back"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/app_name" />
+                <TextView
+                    android:textColor="@color/colorTextPrimary"
+                    android:gravity="center_vertical"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="3"
+                    android:id="@+id/day"
+                    android:paddingLeft="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:textSize="@dimen/_14ssp"
+                    android:text="@string/day"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="10dp"
+                    tools:ignore="RtlSymmetry" />
+                <LinearLayout
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/save"
+                    android:padding="@dimen/_8sdp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:ignore="UseCompoundDrawables">
+                    <ImageView
+                        android:contentDescription="@string/app_name"
+                        android:tint="@color/colorTextPrimary"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_add"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:ignore="UseAppTint" />
+                    <TextView
+                        android:id="@+id/save_text"
+                        android:textColor="@color/colorTextPrimary"
+                        android:textSize="@dimen/_15ssp"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/insert"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+        <LinearLayout
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_margin="@dimen/_5sdp"
+                android:background="@drawable/action"
+                android:padding="@dimen/_10sdp"
+                android:textSize="@dimen/_13ssp"
+                android:textColor="@color/colorWhite"
+                android:text="@string/class_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:background="@drawable/action_white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:ignore="RtlSymmetry">
+
+            <TextView
+                android:gravity="center"
+                android:textColor="@android:color/black"
+                android:id="@+id/start"
+                android:textSize="@dimen/_12ssp"
+                android:text="@string/starts"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_35sdp" />
+
+            <TextView
+                android:textColor="@color/colorWhite"
+                android:background="@color/colorAccent"
+                android:gravity="center"
+                android:id="@+id/startview"
+                android:textSize="@dimen/_12ssp"
+                android:text="@string/_00_00"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_35sdp" />
+
+            <TextView
+                android:gravity="center"
+                android:textColor="@android:color/black"
+                android:id="@+id/end"
+                android:textSize="@dimen/_12ssp"
+                android:text="@string/ends"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_35sdp" />
+
+            <TextView
+                android:textColor="@color/colorWhite"
+                android:background="@drawable/time_right"
+                android:gravity="center"
+                android:id="@+id/endview"
+                android:textSize="@dimen/_12ssp"
+                android:text="@string/_00_00"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_35sdp" />
+        </LinearLayout>
+
+
+        <EditText
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:id="@+id/subject"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_10sdp"
+            android:textSize="@dimen/_12ssp"
+            android:textColorHint="@color/colorTextHint"
+            android:textColor="@color/colorWhite"
+            android:background="@drawable/action"
+            android:hint="@string/subject"
+            android:inputType="text"
+            android:autofillHints="" />
+
+        <EditText
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:id="@+id/type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_10sdp"
+            android:textSize="@dimen/_12ssp"
+            android:textColorHint="@color/colorTextHint"
+            android:textColor="@color/colorWhite"
+            android:background="@drawable/action"
+            android:hint="@string/type_lecture_lab_etc"
+            android:autofillHints=""
+            android:inputType="text" />
+
+        <EditText
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:id="@+id/room"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_10sdp"
+            android:textSize="@dimen/_12ssp"
+            android:textColorHint="@color/colorTextHint"
+            android:textColor="@color/colorWhite"
+            android:background="@drawable/action"
+            android:hint="@string/room"
+            android:autofillHints=""
+            android:inputType="text" />
+
+        <EditText
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:id="@+id/teacher"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_10sdp"
+            android:textSize="@dimen/_12ssp"
+            android:textColorHint="@color/colorTextHint"
+            android:textColor="@color/colorWhite"
+            android:background="@drawable/action"
+            android:hint="@string/teacher"
+            android:autofillHints=""
+            android:inputType="text" />
+
+        <EditText
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:id="@+id/contact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/colorTextHint"
+            android:textColor="@color/colorWhite"
+            android:background="@drawable/action"
+            android:hint="@string/contact"
+            android:inputType="number"
+            android:textSize="@dimen/_12ssp"
+            android:padding="@dimen/_10sdp"
+            android:autofillHints="" />
+
+        <TextView
+            android:textColor="@color/colorWhite"
+            android:background="@drawable/action"
+            android:textSize="@dimen/_12ssp"
+            android:text="@string/notes"
+            android:padding="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:textColorHint="@color/colorTextHint"
+            android:padding="@dimen/_10sdp"
+            android:background="@drawable/action_white"
+            android:gravity="start|top"
+            android:id="@+id/note"
+            android:hint="@string/write_here"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:textColor="@color/colorTextPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_80sdp"
+            android:textSize="@dimen/_12ssp"
+            android:autofillHints=""
+            android:inputType="textMultiLine" />
+    </LinearLayout>
+</RelativeLayout>
