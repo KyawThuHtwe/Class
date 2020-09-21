@@ -1,44 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorCardView"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <View
-        app:layout_constraintBottom_toTopOf="@+id/a"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_20sdp"
+    android:id="@+id/layout"
+    android:orientation="vertical">
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:background="@color/colorSelectedMenu"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_15sdp"/>
+        android:layout_height="@dimen/_40sdp">
+        <TextView
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:textColor="@color/colorWhite"
+            android:padding="@dimen/_10sdp"
+            android:text="@string/attendance"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_check"
+            android:layout_marginEnd="@dimen/_10sdp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:background="@color/colorDivider"
+        android:layout_margin="@dimen/_10sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:padding="@dimen/_5sdp"
+            android:background="@color/colorTime"
+            android:textSize="@dimen/_12ssp"
+            android:textColor="@color/colorWhite"
+            android:text="@string/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:paddingLeft="@dimen/_5sdp"
+            android:id="@+id/today"
+            android:textSize="@dimen/_12ssp"
+            android:textColor="@color/colorAttendance"
+            android:text="@string/today"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
     <TextView
-        android:layout_marginBottom="@dimen/_15sdp"
-        android:layout_marginLeft="@dimen/_5sdp"
-        android:background="@drawable/action_white"
-        android:id="@+id/a"
         android:textColor="@color/colorTextPrimary"
-        android:padding="@dimen/_10sdp"
-        android:text="@string/attendance"
+        android:paddingLeft="@dimen/_10sdp"
+        android:paddingRight="@dimen/_10sdp"
+        android:paddingBottom="@dimen/_15sdp"
+        android:text="@string/are_you_sure_want_to_submit"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/present"
-        tools:ignore="MissingConstraints" />
+        android:layout_height="wrap_content" />
 
-    <Button
-        style="@style/Widget.AppCompat.ActionButton"
-        app:layout_constraintStart_toStartOf="parent"
-        android:id="@+id/present"
-        android:layout_margin="@dimen/_5sdp"
-        android:textSize="@dimen/_13ssp"
-        android:textColor="@color/colorWhite"
-        android:background="@drawable/action"
-        android:text="@string/present"
+    <LinearLayout
+        android:background="@color/colorSelectedMenu"
+        android:gravity="center"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/b"/>
-    <View
-        android:id="@+id/b"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_10sdp"/>
+        android:layout_height="@dimen/_40sdp">
+        <Button
+            android:layout_weight="1"
+            style="@style/Widget.AppCompat.ActionButton"
+            android:id="@+id/cancel"
+            android:textSize="@dimen/_13ssp"
+            android:textColor="@color/colorWhite"
+            android:text="@string/cancel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+        <View
+            android:background="@color/colorWhite"
+            android:layout_width="1dp"
+            android:layout_height="@dimen/_20sdp"/>
+        <Button
+            android:layout_weight="1"
+            style="@style/Widget.AppCompat.ActionButton"
+            android:id="@+id/ok"
+            android:textSize="@dimen/_13ssp"
+            android:textColor="@color/colorWhite"
+            android:text="@string/ok"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Class</string>
+    <string name="app_name">Time Table</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="time">Time</string>
     <string name="note">Note</string>
@@ -28,7 +28,7 @@
     <string name="insert">Insert</string>
     <string name="present">Present</string>
     <string name="attendance">Attendance</string>
-    <string name="_0_0">0.0%</string>
+    <string name="_0_0">0.0</string>
     <string name="communicate">Communicate</string>
     <string name="thu">Kyaw Thu</string>
     <string name="_09750534996">09750534996</string>
@@ -44,10 +44,28 @@
     <string name="_2020">2020</string>
     <string name="_0">0</string>
     <string name="absent">Absent</string>
-    <string name="all">All</string>
     <string name="submit">Submit</string>
     <string name="other_day">Other day</string>
     <string name="tomorrow">Tomorrow</string>
     <string name="today">Today</string>
     <string name="no_note">No Note</string>
+    <string name="are_you_sure_want_to_submit">Are you sure want to submit?</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancel</string>
+    <string name="date">Date</string>
+    <string name="record">Record</string>
+    <string name="save_as">Save as</string>
+    <string name="save">Save</string>
+    <string name="close">Close</string>
+    <string name="cent">%</string>
+    <string name="total">Total</string>
+    <string name="left">Left</string>
+    <string name="developed_by">Developed By</string>
+    <string name="kyaw_thu">Kyaw Thu</string>
+    <string name="copypaste673_gmail_com">copypaste673@gmail.com</string>
+    <string name="build_app_13_8_2020">Build App : 13.8.2020</string>
+    <string name="version_1">Version : 1</string>
+    <string name="note_database">Note Database</string>
+    <string name="time_database">Time Database</string>
+    <string name="attendance_database">Attendance Database</string>
 </resources>

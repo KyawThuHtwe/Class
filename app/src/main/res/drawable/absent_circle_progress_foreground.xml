@@ -7,8 +7,8 @@
             android:shape="ring"
             android:thickness="5dp">
             <gradient
-                android:startColor="#000"
-                android:endColor="#000"
+                android:startColor="@color/colorTime"
+                android:endColor="@color/colorTime"
                 android:type="sweep"/>
         </shape>
     </item>

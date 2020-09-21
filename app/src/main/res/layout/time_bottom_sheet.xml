@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorCardView"
+    android:background="@color/colorDivider"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/bottomSheetContainer">
     <LinearLayout
@@ -15,15 +15,16 @@
             android:orientation="vertical"
             android:padding="5dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <RelativeLayout
+            android:layout_height="wrap_content"
+            tools:ignore="UselessParent">
+            <LinearLayout
+                android:background="@drawable/action_white"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_gravity="center_vertical"
                 android:gravity="center_vertical|center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:background="@drawable/action_white"
                     android:textColor="@color/colorTextPrimary"
                     android:padding="@dimen/_8sdp"
                     android:textSize="@dimen/_15sdp"
@@ -32,72 +33,108 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     tools:ignore="RelativeOverlap" />
-                <ImageView
-                    android:id="@+id/close"
-                    android:focusable="true"
-                    android:clickable="true"
-                    android:padding="@dimen/_10sdp"
-                    android:tint="@color/colorWhite"
+                <LinearLayout
                     android:background="@drawable/action"
-                    android:layout_alignParentRight="true"
-                    android:src="@drawable/ic_baseline_close_24"
-                    android:layout_width="@dimen/_40sdp"
-                    android:layout_height="@dimen/_40sdp"
-                    tools:ignore="UseAppTint"
-                    android:contentDescription="@string/app_name"
-                    android:layout_alignParentEnd="true" />
-            </RelativeLayout>
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <Button
+                        android:background="@android:color/transparent"
+                        android:layout_weight="1"
+                        style="@style/Widget.AppCompat.ActionButton"
+                        android:id="@+id/edit"
+                        android:textSize="@dimen/_13ssp"
+                        android:textColor="@color/colorWhite"
+                        android:text="@string/edit"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"/>
+                    <View
+                        android:background="@color/colorDivider"
+                        android:layout_width="1dp"
+                        android:layout_height="@dimen/_10sdp"/>
+                    <Button
+                        android:background="@android:color/transparent"
+                        android:layout_weight="1"
+                        style="@style/Widget.AppCompat.ActionButton"
+                        android:id="@+id/delete"
+                        android:textSize="@dimen/_13ssp"
+                        android:textColor="@color/colorWhite"
+                        android:text="@string/delete"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"/>
+                    <View
+                        android:background="@color/colorDivider"
+                        android:layout_width="1dp"
+                        android:layout_height="@dimen/_10sdp"/>
+                    <Button
+                        android:background="@android:color/transparent"
+                        android:layout_weight="1"
+                        style="@style/Widget.AppCompat.ActionButton"
+                        android:id="@+id/close"
+                        android:textSize="@dimen/_13ssp"
+                        android:textColor="@color/colorWhite"
+                        android:text="@string/close"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"/>
+                </LinearLayout>
+            </LinearLayout>
 
             <TableLayout
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TableRow
-                    android:background="@drawable/action"
                     android:paddingTop="@dimen/_5sdp"
                     android:paddingBottom="@dimen/_5sdp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <LinearLayout
+                        android:gravity="start|top"
                         android:layout_marginLeft="@dimen/_10sdp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_10sdp"
                         tools:ignore="UselessParent">
-
-                        <ImageView
-                            android:tint="@color/colorWhite"
-                            android:padding="5dp"
-                            android:layout_gravity="center_vertical"
-                            android:src="@drawable/ic_time"
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            tools:ignore="UseAppTint"
-                            android:contentDescription="@string/time" />
+                            tools:ignore="UseCompoundDrawables">
+                            <ImageView
+                                android:tint="@color/colorTextPrimary"
+                                android:padding="5dp"
+                                android:layout_gravity="center_vertical"
+                                android:src="@drawable/ic_time"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                tools:ignore="UseAppTint"
+                                android:contentDescription="@string/time" />
+                            <TextView
+                                android:layout_gravity="center_vertical"
+                                android:layout_width="70dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="left|center_vertical"
+                                android:padding="5dp"
+                                android:text="@string/time"
+                                android:textColor="@color/colorTextPrimary"
+                                android:textSize="@dimen/_12ssp"
+                                tools:ignore="RtlHardcoded" />
+                        </LinearLayout>
                         <TextView
-                            android:layout_gravity="center_vertical"
-                            android:layout_width="70dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="left|center_vertical"
-                            android:padding="5dp"
-                            android:text="@string/time"
-                            android:textColor="@color/colorWhite"
-                            android:textSize="@dimen/_12ssp"
-                            tools:ignore="RtlHardcoded" />
-                        <TextView
+                            android:layout_weight="1"
                             android:layout_gravity="center_vertical"
                             android:id="@+id/infostart"
                             android:padding="5dp"
                             android:text="@string/_00_00"
-                            android:textColor="@color/colorWhite"
+                            android:textColor="@color/colorTextPrimary"
                             android:textSize="@dimen/_12ssp"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:layout_gravity="center_vertical"
                             android:padding="5dp"
                             android:text="@string/__"
-                            android:textColor="@color/colorWhite"
+                            android:textColor="@color/colorTextPrimary"
                             android:textSize="@dimen/_12ssp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
@@ -106,30 +143,33 @@
                             android:layout_gravity="center_vertical"
                             android:id="@+id/infoend"
                             android:padding="5dp"
-                            android:textColor="@color/colorWhite"
+                            android:textColor="@color/colorTextPrimary"
                             android:textSize="@dimen/_12ssp"
                             android:text="@string/_00_00"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
                     </LinearLayout>
                 </TableRow>
-
+                <View
+                    android:layout_marginLeft="@dimen/_20sdp"
+                    android:layout_marginRight="@dimen/_20sdp"
+                    android:background="@color/colorTextHint"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"/>
                 <TableRow
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:background="@drawable/action"
                     android:paddingTop="@dimen/_5sdp"
                     android:paddingBottom="@dimen/_5sdp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <LinearLayout
+                        android:gravity="top|start"
                         android:layout_marginLeft="@dimen/_10sdp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_10sdp"
                         tools:ignore="UselessParent">
-
                         <ImageView
-                            android:tint="@color/colorWhite"
+                            android:tint="@color/colorTextPrimary"
                             android:padding="5dp"
                             android:layout_gravity="center_vertical"
                             android:src="@drawable/ic_subject"
@@ -144,331 +184,320 @@
                             android:gravity="left|center_vertical"
                             android:padding="5dp"
                             android:text="@string/subject"
-                            android:textColor="@color/colorWhite"
+                            android:textColor="@color/colorTextPrimary"
                             android:textSize="@dimen/_12ssp"
                             tools:ignore="RtlHardcoded" />
-                        <TextView
-                            android:layout_gravity="center_vertical"
-                            android:id="@+id/infosubject"
-                            android:padding="5dp"
-                            android:layout_weight="2"
-                            android:textColor="@color/colorWhite"
-                            android:textSize="@dimen/_12ssp"
-                            android:text="@string/subject"
+                        <LinearLayout
+                            android:layout_weight="1"
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="fill_parent">
+                            <HorizontalScrollView
+                                android:layout_width="fill_parent"
+                                android:layout_height="fill_parent">
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="fill_parent"
+                                    android:orientation="horizontal">
+                                    <TextView
+                                        android:inputType="textMultiLine"
+                                        android:textAppearance="?android:attr/textAppearanceLarge"
+                                        android:layout_gravity="center_vertical"
+                                        android:id="@+id/infosubject"
+                                        android:padding="5dp"
+                                        android:textColor="@color/colorTextPrimary"
+                                        android:textSize="@dimen/_12ssp"
+                                        android:text="@string/subject"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"/>
+                                </LinearLayout>
+                            </HorizontalScrollView>
+                        </LinearLayout>
+
                     </LinearLayout>
                 </TableRow>
-
+                <View
+                    android:layout_marginLeft="@dimen/_20sdp"
+                    android:layout_marginRight="@dimen/_20sdp"
+                    android:background="@color/colorTextHint"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"/>
                 <TableRow
-                    android:background="@drawable/action"
-                    android:layout_marginTop="@dimen/_5sdp"
                     android:paddingTop="@dimen/_5sdp"
                     android:paddingBottom="@dimen/_5sdp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <LinearLayout
+                        android:gravity="top|start"
                         android:layout_marginLeft="@dimen/_10sdp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         tools:ignore="UselessParent"
                         android:layout_marginStart="@dimen/_10sdp">
-
-                        <ImageView
-                            android:tint="@color/colorWhite"
-                            android:padding="5dp"
-                            android:layout_gravity="center_vertical"
-                            android:src="@drawable/ic_type"
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            tools:ignore="UseAppTint"
-                            android:contentDescription="@string/type" />
+                            tools:ignore="UseCompoundDrawables">
+                            <ImageView
+                                android:tint="@color/colorTextPrimary"
+                                android:padding="5dp"
+                                android:layout_gravity="center_vertical"
+                                android:src="@drawable/ic_type"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                tools:ignore="UseAppTint"
+                                android:contentDescription="@string/type" />
+
+                            <TextView
+                                android:layout_gravity="center_vertical"
+                                android:layout_width="70dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="left|center_vertical"
+                                android:padding="5dp"
+                                android:text="@string/type"
+                                android:textColor="@color/colorTextPrimary"
+                                android:textSize="@dimen/_12ssp"
+                                tools:ignore="RtlHardcoded" />
+                        </LinearLayout>
 
                         <TextView
-                            android:layout_gravity="center_vertical"
-                            android:layout_width="70dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="left|center_vertical"
-                            android:padding="5dp"
-                            android:text="@string/type"
-                            android:textColor="@color/colorWhite"
-                            android:textSize="@dimen/_12ssp"
-                            tools:ignore="RtlHardcoded" />
-                        <TextView
+                            android:layout_weight="1"
                             android:layout_gravity="center_vertical"
                             android:id="@+id/infotype"
                             android:padding="5dp"
-                            android:textColor="@color/colorWhite"
+                            android:textColor="@color/colorTextPrimary"
                             android:textSize="@dimen/_12ssp"
                             android:text="@string/type"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"/>
                     </LinearLayout>
                 </TableRow>
-
+                <View
+                    android:layout_marginLeft="@dimen/_20sdp"
+                    android:layout_marginRight="@dimen/_20sdp"
+                    android:background="@color/colorTextHint"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"/>
                 <TableRow
-                    android:background="@drawable/action"
-                    android:layout_marginTop="@dimen/_5sdp"
                     android:paddingTop="@dimen/_5sdp"
                     android:paddingBottom="@dimen/_5sdp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <LinearLayout
+                        android:gravity="start|top"
                         android:layout_marginLeft="@dimen/_10sdp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_10sdp"
                         tools:ignore="UselessParent">
-                        <ImageView
-                            android:tint="@color/colorWhite"
-                            android:padding="5dp"
-                            android:layout_gravity="center_vertical"
-                            android:src="@drawable/ic_room"
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            tools:ignore="UseAppTint"
-                            android:contentDescription="@string/room" />
+                            tools:ignore="UseCompoundDrawables">
+                            <ImageView
+                                android:tint="@color/colorTextPrimary"
+                                android:padding="5dp"
+                                android:layout_gravity="center_vertical"
+                                android:src="@drawable/ic_room"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                tools:ignore="UseAppTint"
+                                android:contentDescription="@string/room" />
+
+                            <TextView
+                                android:layout_gravity="center_vertical"
+                                android:layout_width="70dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="left|center_vertical"
+                                android:padding="5dp"
+                                android:text="@string/room"
+                                android:textColor="@color/colorTextPrimary"
+                                android:textSize="@dimen/_12ssp"
+                                tools:ignore="RtlHardcoded" />
+                        </LinearLayout>
 
                         <TextView
-                            android:layout_gravity="center_vertical"
-                            android:layout_width="70dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="left|center_vertical"
-                            android:padding="5dp"
-                            android:text="@string/room"
-                            android:textColor="@color/colorWhite"
-                            android:textSize="@dimen/_12ssp"
-                            tools:ignore="RtlHardcoded" />
-                        <TextView
+                            android:layout_weight="1"
                             android:layout_gravity="center_vertical"
                             android:id="@+id/inforoom"
                             android:padding="5dp"
-                            android:textColor="@color/colorWhite"
+                            android:textColor="@color/colorTextPrimary"
                             android:textSize="@dimen/_12ssp"
                             android:text="@string/room"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"/>
 
                     </LinearLayout>
                 </TableRow>
-
+                <View
+                    android:layout_marginLeft="@dimen/_20sdp"
+                    android:layout_marginRight="@dimen/_20sdp"
+                    android:background="@color/colorTextHint"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"/>
                 <TableRow
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:background="@drawable/action"
                     android:paddingTop="@dimen/_5sdp"
                     android:paddingBottom="@dimen/_5sdp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <LinearLayout
+                        android:gravity="top|start"
                         android:layout_marginLeft="@dimen/_10sdp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_10sdp"
                         tools:ignore="UselessParent">
-                        <ImageView
-                            android:tint="@color/colorWhite"
-                            android:padding="5dp"
-                            android:layout_gravity="center_vertical"
-                            android:src="@drawable/ic_account"
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            tools:ignore="UseAppTint"
-                            android:contentDescription="@string/teacher" />
+                            tools:ignore="UseCompoundDrawables">
+                            <ImageView
+                                android:tint="@color/colorTextPrimary"
+                                android:padding="5dp"
+                                android:layout_gravity="center_vertical"
+                                android:src="@drawable/ic_account"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                tools:ignore="UseAppTint"
+                                android:contentDescription="@string/teacher" />
+
+                            <TextView
+                                android:layout_gravity="center_vertical"
+                                android:layout_width="70dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="left|center_vertical"
+                                android:padding="5dp"
+                                android:text="@string/teacher"
+                                android:textColor="@color/colorTextPrimary"
+                                android:textSize="@dimen/_12ssp"
+                                tools:ignore="RtlHardcoded" />
+                        </LinearLayout>
 
                         <TextView
-                            android:layout_gravity="center_vertical"
-                            android:layout_width="70dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="left|center_vertical"
-                            android:padding="5dp"
-                            android:text="@string/teacher"
-                            android:textColor="@color/colorWhite"
-                            android:textSize="@dimen/_12ssp"
-                            tools:ignore="RtlHardcoded" />
-                        <TextView
+                            android:layout_weight="1"
                             android:layout_gravity="center_vertical"
                             android:id="@+id/infoteacher"
                             android:padding="5dp"
-                            android:textColor="@color/colorWhite"
+                            android:textColor="@color/colorTextPrimary"
                             android:textSize="@dimen/_12ssp"
                             android:text="@string/teacher"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"/>
                     </LinearLayout>
                 </TableRow>
-
+                <View
+                    android:layout_marginLeft="@dimen/_20sdp"
+                    android:layout_marginRight="@dimen/_20sdp"
+                    android:background="@color/colorTextHint"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"/>
                 <TableRow
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:background="@drawable/action"
                     android:paddingTop="@dimen/_5sdp"
                     android:paddingBottom="@dimen/_5sdp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <LinearLayout
+                        android:gravity="top|start"
                         android:layout_marginLeft="@dimen/_10sdp"
                         android:id="@+id/call"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_10sdp"
                         tools:ignore="UselessParent">
-                        <ImageView
-                            android:tint="@color/colorWhite"
-                            android:padding="5dp"
-                            android:layout_gravity="center_vertical"
-                            android:src="@drawable/ic_phone"
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            tools:ignore="UseAppTint"
-                            android:contentDescription="@string/contact" />
+                            tools:ignore="UseCompoundDrawables">
+                            <ImageView
+                                android:tint="@color/colorTextPrimary"
+                                android:padding="5dp"
+                                android:layout_gravity="center_vertical"
+                                android:src="@drawable/ic_phone"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                tools:ignore="UseAppTint"
+                                android:contentDescription="@string/contact" />
+
+                            <TextView
+                                android:layout_gravity="center_vertical"
+                                android:layout_width="70dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="left|center_vertical"
+                                android:padding="5dp"
+                                android:text="@string/contact"
+                                android:textColor="@color/colorTextPrimary"
+                                android:textSize="@dimen/_12ssp"
+                                tools:ignore="RtlHardcoded" />
+                        </LinearLayout>
 
                         <TextView
-                            android:layout_gravity="center_vertical"
-                            android:layout_width="70dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="left|center_vertical"
-                            android:padding="5dp"
-                            android:text="@string/contact"
-                            android:textColor="@color/colorWhite"
-                            android:textSize="@dimen/_12ssp"
-                            tools:ignore="RtlHardcoded" />
-                        <TextView
+                            android:layout_weight="1"
                             android:layout_gravity="center_vertical"
                             android:id="@+id/infocontact"
                             android:padding="5dp"
-                            android:textColor="@color/colorWhite"
+                            android:textColor="@color/colorTextPrimary"
                             android:textSize="@dimen/_12ssp"
                             android:text="@string/contact"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"/>
                     </LinearLayout>
                 </TableRow>
+                <View
+                    android:layout_marginLeft="@dimen/_20sdp"
+                    android:layout_marginRight="@dimen/_20sdp"
+                    android:background="@color/colorTextHint"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"/>
                 <TableRow
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:background="@drawable/action"
                     android:paddingTop="@dimen/_5sdp"
                     android:paddingBottom="@dimen/_5sdp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <LinearLayout
+                        android:gravity="top|start"
                         android:layout_marginLeft="@dimen/_10sdp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_10sdp"
                         tools:ignore="UselessParent">
-                        <ImageView
-                            android:tint="@color/colorWhite"
-                            android:padding="5dp"
-                            android:layout_gravity="center_vertical"
-                            android:src="@drawable/ic_note"
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            tools:ignore="UseAppTint"
-                            android:contentDescription="@string/notes" />
+                            tools:ignore="UseCompoundDrawables">
+                            <ImageView
+                                android:tint="@color/colorTextPrimary"
+                                android:padding="5dp"
+                                android:layout_gravity="center_vertical"
+                                android:src="@drawable/ic_note"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                tools:ignore="UseAppTint"
+                                android:contentDescription="@string/notes" />
+
+                            <TextView
+                                android:layout_gravity="center_vertical"
+                                android:layout_width="70dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="left|center_vertical"
+                                android:padding="5dp"
+                                android:text="@string/notes"
+                                android:textColor="@color/colorTextPrimary"
+                                android:textSize="@dimen/_12ssp"
+                                tools:ignore="RtlHardcoded" />
+                        </LinearLayout>
 
                         <TextView
-                            android:layout_gravity="center_vertical"
-                            android:layout_width="70dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="left|center_vertical"
-                            android:padding="5dp"
-                            android:text="@string/notes"
-                            android:textColor="@color/colorWhite"
-                            android:textSize="@dimen/_12ssp"
-                            tools:ignore="RtlHardcoded" />
-                        <TextView
+                            android:layout_weight="1"
                             android:layout_gravity="center_vertical"
                             android:id="@+id/infonote"
                             android:padding="5dp"
-                            android:textColor="@color/colorWhite"
+                            android:textColor="@color/colorTextPrimary"
                             android:textSize="@dimen/_12ssp"
                             android:text="@string/notes"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"/>
                     </LinearLayout>
                 </TableRow>
             </TableLayout>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_margin="@dimen/_5sdp"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:background="@drawable/action_white"
-                android:textColor="@color/colorTextPrimary"
-                android:padding="@dimen/_8sdp"
-                android:textSize="@dimen/_15sdp"
-                android:id="@+id/textView"
-                android:text="@string/action"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <LinearLayout
-                android:id="@+id/edit"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:orientation="horizontal"
-                android:padding="@dimen/_10sdp"
-                android:layout_gravity="center"
-                android:focusable="true"
-                android:clickable="true"
-                android:background="@drawable/action"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:tint="@color/colorWhite"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_edit"
-                    android:contentDescription="@string/edit"
-                    tools:ignore="UseAppTint"
-                    android:layout_marginStart="@dimen/_10sdp" />
-                <TextView
-                    android:gravity="center|left"
-                    android:textSize="@dimen/_13ssp"
-                    android:layout_marginRight="25dp"
-                    android:layout_marginLeft="15dp"
-                    android:textColor="@color/colorWhite"
-                    android:text="@string/edit"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginEnd="25dp"
-                    android:layout_marginStart="15dp" />
-
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/delete"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:padding="@dimen/_10sdp"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:focusable="true"
-                android:clickable="true"
-                android:background="@drawable/action"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:tint="@color/colorWhite"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_delete"
-                    android:contentDescription="@string/delete"
-                    tools:ignore="UseAppTint"
-                    android:layout_marginStart="@dimen/_10sdp" />
-                <TextView
-                    android:gravity="center|left"
-                    android:textSize="@dimen/_13ssp"
-                    android:layout_marginRight="25dp"
-                    android:layout_marginLeft="15dp"
-                    android:textColor="@color/colorWhite"
-                    android:text="@string/delete"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginEnd="25dp"
-                    android:layout_marginStart="15dp" />
-            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 

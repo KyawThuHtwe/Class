@@ -5,65 +5,120 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/_3sdp"
-        android:layout_marginRight="@dimen/_3sdp"
-        android:layout_marginTop="@dimen/_3sdp"
-        android:layout_marginBottom="@dimen/_3sdp">
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:layout_marginRight="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_5sdp">
         <LinearLayout
-            android:background="@android:color/holo_orange_light"
+            android:background="@color/colorDivider"
             android:gravity="center_vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:baselineAligned="false">
             <LinearLayout
+                android:background="@color/colorWhite"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ProgressBar
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:id="@+id/record_progress"
+                    android:indeterminate="false"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:max="100"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/_5sdp" />
+                <LinearLayout
+                    android:padding="@dimen/_2sdp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:maxLength="4"
+                        android:id="@+id/record_text"
+                        android:textColor="@color/colorTextPrimary"
+                        android:text="@string/record"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:textColor="@color/colorTextPrimary"
+                        android:text="@string/cent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:baselineAligned="false">
                 <LinearLayout
-                    android:padding="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:background="@color/colorTextPrimary"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        android:textColor="@color/colorTextPrimary"
-                        android:gravity="center_vertical"
-                        android:layout_weight="1"
-                        android:id="@+id/subject"
-                        android:textSize="@dimen/_14ssp"
-                        android:text="@string/subject"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        tools:ignore="NestedWeights" />
-                    <TextView
-                        android:layout_marginTop="@dimen/_5sdp"
-                        android:textColor="@color/colorTextPrimary"
-                        android:gravity="center_vertical"
-                        android:layout_weight="1"
-                        android:textSize="@dimen/_12ssp"
-                        android:text="@string/attendance"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                    android:orientation="vertical"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:layout_marginStart="@dimen/_10sdp">
 
+                    <HorizontalScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:ignore="UselessParent">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical" >
+                            <TextView
+                                android:padding="@dimen/_5sdp"
+                                android:textColor="@color/colorWhite"
+                                android:gravity="center_vertical"
+                                android:id="@+id/subject"
+                                android:textSize="@dimen/_13ssp"
+                                android:text="@string/subject"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                tools:ignore="NestedWeights" />
+
+                        </LinearLayout>
+                    </HorizontalScrollView>
                 </LinearLayout>
                 <RelativeLayout
                     android:layout_marginTop="@dimen/_3sdp"
-                    android:layout_marginRight="@dimen/_3sdp"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_3sdp">
-                    <TextView
-                        android:textColor="@color/colorTextPrimary"
-                        android:padding="@dimen/_10sdp"
-                        android:id="@+id/percent"
-                        android:layout_centerInParent="true"
-                        android:layout_centerVertical="true"
-                        android:text="@string/_0_0"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:padding="@dimen/_5sdp"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_centerVertical="true">
+                        <TextView
+                            android:maxLength="4"
+                            android:textColor="@color/colorTextPrimary"
+                            android:id="@+id/percent_present"
+                            android:text="@string/_0_0"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:textColor="@color/colorTextPrimary"
+                            android:text="@string/cent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
                     <ProgressBar
                         android:rotation="-90"
                         android:progressDrawable="@drawable/circle_progress_background"
@@ -78,13 +133,63 @@
                         android:max="100"
                         android:layout_alignParentStart="true"
                         android:layout_alignParentLeft="true"
-                        android:id="@+id/circle_progress_bar"
+                        android:id="@+id/present_circle_progress_bar"
                         android:rotation="-90"
-                        android:progressDrawable="@drawable/circle_progress_foreground"
+                        android:progressDrawable="@drawable/present_circle_progress_foreground"
                         android:indeterminate="false"
                         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                         android:layout_width="75dp"
                         android:layout_height="75dp"/>
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:layout_marginRight="@dimen/_3sdp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_3sdp">
+                    <LinearLayout
+                        android:padding="@dimen/_5sdp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_centerVertical="true">
+                        <TextView
+                            android:maxLength="4"
+                            android:textColor="@color/colorTextPrimary"
+                            android:id="@+id/percent_absent"
+                            android:text="@string/_0_0"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:textColor="@color/colorTextPrimary"
+                            android:text="@string/cent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                    <ProgressBar
+                        android:rotation="-90"
+                        android:progressDrawable="@drawable/circle_progress_background"
+                        android:progress="100"
+                        android:max="100"
+                        android:indeterminate="false"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:layout_width="75dp"
+                        android:layout_height="75dp"/>
+
+                    <ProgressBar
+                        android:max="100"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:id="@+id/absent_circle_progress_bar"
+                        android:rotation="-90"
+                        android:progressDrawable="@drawable/absent_circle_progress_foreground"
+                        android:indeterminate="false"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:layout_width="75dp"
+                        android:layout_height="75dp"
+                        tools:ignore="UnusedAttribute" />
 
                 </RelativeLayout>
 
@@ -100,25 +205,26 @@
                 android:paddingEnd="@dimen/_10sdp"
                 tools:ignore="RtlHardcoded,RtlSymmetry">
                 <LinearLayout
-                    android:gravity="center_vertical"
-                    android:layout_width="wrap_content"
+                    android:background="@color/colorWhite"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_width="@dimen/_60sdp"
                     android:layout_height="wrap_content">
                     <TextView
-                        android:paddingRight="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:gravity="center"
                         android:textSize="@dimen/_10ssp"
                         android:textColor="@color/colorTextPrimary"
-                        android:text="@string/all"
+                        android:text="@string/total"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
-                    <View
-                        android:background="@color/colorPrimaryDark"
-                        android:layout_width="@dimen/_10sdp"
-                        android:layout_height="@dimen/_10sdp"/>
                     <TextView
+                        android:background="@android:color/black"
+                        android:layout_weight="1"
+                        android:gravity="center"
                         android:id="@+id/attendance1"
-                        android:layout_marginLeft="@dimen/_5sdp"
                         android:textSize="@dimen/_10ssp"
-                        android:textColor="@color/colorTextPrimary"
+                        android:textColor="@color/colorWhite"
                         android:text="@string/_0"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
@@ -126,25 +232,26 @@
                 </LinearLayout>
                 <LinearLayout
                     android:layout_marginLeft="@dimen/_10sdp"
-                    android:gravity="center_vertical"
-                    android:layout_width="wrap_content"
+                    android:gravity="center"
+                    android:background="@color/colorWhite"
+                    android:orientation="horizontal"
+                    android:layout_width="@dimen/_60sdp"
                     android:layout_height="wrap_content">
                     <TextView
-                        android:paddingRight="@dimen/_5sdp"
+                        android:gravity="center"
+                        android:layout_weight="1"
                         android:textSize="@dimen/_10ssp"
                         android:textColor="@color/colorTextPrimary"
                         android:text="@string/present"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
-                    <View
-                        android:background="@color/colorSelectedMenu"
-                        android:layout_width="@dimen/_10sdp"
-                        android:layout_height="@dimen/_10sdp"/>
                     <TextView
+                        android:background="@color/colorAccent"
+                        android:gravity="center"
+                        android:layout_weight="1"
                         android:id="@+id/attendance2"
-                        android:layout_marginLeft="@dimen/_5sdp"
                         android:textSize="@dimen/_10ssp"
-                        android:textColor="@color/colorTextPrimary"
+                        android:textColor="@color/colorWhite"
                         android:text="@string/_0"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
@@ -152,33 +259,58 @@
                 </LinearLayout>
                 <LinearLayout
                     android:layout_marginLeft="@dimen/_10sdp"
-                    android:gravity="center_vertical"
-                    android:layout_width="wrap_content"
+                    android:gravity="center"
+                    android:background="@color/colorWhite"
+                    android:orientation="horizontal"
+                    android:layout_width="@dimen/_60sdp"
                     android:layout_height="wrap_content">
                     <TextView
-                        android:paddingRight="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:gravity="center"
                         android:textSize="@dimen/_10ssp"
                         android:textColor="@color/colorTextPrimary"
                         android:text="@string/absent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
-                    <View
-                        android:background="@color/colorWhite"
-                        android:layout_width="@dimen/_10sdp"
-                        android:layout_height="@dimen/_10sdp"/>
                     <TextView
+                        android:background="@color/colorTime"
+                        android:layout_weight="1"
+                        android:gravity="center"
                         android:id="@+id/attendance3"
-                        android:layout_marginLeft="@dimen/_5sdp"
                         android:textSize="@dimen/_10ssp"
-                        android:textColor="@color/colorTextPrimary"
+                        android:textColor="@color/colorWhite"
                         android:text="@string/_0"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
-
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:gravity="center"
+                    android:background="@color/colorWhite"
+                    android:orientation="horizontal"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textSize="@dimen/_10ssp"
+                        android:textColor="@color/colorTextPrimary"
+                        android:text="@string/left"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:background="@color/colorTextHint"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:id="@+id/attendance4"
+                        android:textSize="@dimen/_10ssp"
+                        android:textColor="@color/colorWhite"
+                        android:text="@string/_0"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
                 </LinearLayout>
 
             </LinearLayout>
-
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

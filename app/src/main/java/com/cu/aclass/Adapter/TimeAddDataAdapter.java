@@ -1,47 +1,42 @@
 package com.cu.aclass.Adapter;
 
-import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.net.Uri;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.ImageButton;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cu.aclass.DatabaseHelper.DatabaseHelper;
 import com.cu.aclass.MainActivity;
-import com.cu.aclass.Model.SubjectData;
 import com.cu.aclass.Model.TimeAddData;
 import com.cu.aclass.R;
 import com.cu.aclass.TimeTable.AddTimeActivity;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.snackbar.Snackbar;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
-import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class TimeAddDataAdapter extends RecyclerView.Adapter<TimeAddDataAdapter.ViewHolder> {
     Context context;
     ArrayList<TimeAddData> timeAddData;
-    boolean state1 = false;
-    boolean state2 = false;
-    boolean state3 = false;
+    String result ="1";
 
     public TimeAddDataAdapter(Context context, ArrayList<TimeAddData> timeAddData) {
         this.context = context;
@@ -58,10 +53,21 @@ public class TimeAddDataAdapter extends RecyclerView.Adapter<TimeAddDataAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
+        holder.radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId){
+                    case R.id.present_radio:
+                        result="1";break;
+                    case R.id.absent_radio:
+                        result="0";break;
+                }
+            }
+        });
         holder.submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                present(v,timeAddData.get(position).getId(),timeAddData.get(position).getSubject(),timeAddData.get(position).getDay());
+                present(v,timeAddData.get(position).getId()+"",timeAddData.get(position).getSubject()+"",timeAddData.get(position).getDay()+"",result);
             }
         });
         holder.subject.setText(timeAddData.get(position).getSubject());
@@ -77,93 +83,43 @@ public class TimeAddDataAdapter extends RecyclerView.Adapter<TimeAddDataAdapter.
                         timeAddData.get(position).getDay()+"");
             }
         });
-        final Handler handler = new Handler();
-        Runnable runnable1 = new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Animation animation = AnimationUtils.loadAnimation(context, R.anim.fade_in);
-                    if (state1) {
-                        holder.ani1.setImageResource(R.drawable.ic_hourglass_full);
-                        state1 = false;
-                    } else {
-                        holder.ani1.setImageResource(R.drawable.ic_hourglass_empty);
-                        state1 = true;
-                    }
-                    holder.ani1.setAnimation(animation);
-                    handler.postDelayed(this, 2000);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-            }
-        };
-        Runnable runnable2 = new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Animation animation = AnimationUtils.loadAnimation(context, R.anim.fade_in);
-                    if (state2) {
-                        holder.ani2.setImageResource(R.drawable.ic_hourglass_full);
-                        state2 = false;
-                    } else {
-                        holder.ani2.setImageResource(R.drawable.ic_hourglass_empty);
-                        state2 = true;
-                    }
-                    holder.ani2.setAnimation(animation);
-                    handler.postDelayed(this, 3000);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-        Runnable runnable3 = new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Animation animation = AnimationUtils.loadAnimation(context, R.anim.fade_in);
-                    if (state3) {
-                        holder.ani3.setImageResource(R.drawable.ic_hourglass_full);
-                        state3 = false;
-                    } else {
-                        holder.ani3.setImageResource(R.drawable.ic_hourglass_empty);
-                        state3 = true;
-                    }
-                    holder.ani3.setAnimation(animation);
-                    handler.postDelayed(this, 4000);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-        handler.post(runnable1);
-        handler.post(runnable2);
-        handler.post(runnable3);
     }
 
-    private void present(View v, final String id, final String subject, final String day) {
+    private void present(View v, final String id, final String subject, final String day, final String vote) {
         try {
-            View view = LayoutInflater.from(v.getContext()).inflate(R.layout.attendance_submit, null);
-            final BottomSheetDialog dialog = new BottomSheetDialog(v.getContext());
-            dialog.setContentView(view);
+            final AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext(),R.style.AlertDialogTheme);
+            View view = LayoutInflater.from(v.getContext()).inflate(R.layout.attendance_submit, (LinearLayout) v.findViewById(R.id.layout));
+            builder.setView(view);
+            TextView today=view.findViewById(R.id.today);
+            Calendar calendar=Calendar.getInstance();
+            String cur_date= DateFormat.getDateInstance().format(calendar.getTime());
+            today.setText(cur_date);
+
+            Button cancel = view.findViewById(R.id.cancel);
+            Button ok = view.findViewById(R.id.ok);
+            final AlertDialog dialog = builder.create();
             dialog.show();
-            Button present = view.findViewById(R.id.present);
-            present.setOnClickListener(new View.OnClickListener() {
+            cancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                }
+            });
+            ok.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     DatePicker datePicker = new DatePicker(context);
                     DatabaseHelper helper = new DatabaseHelper(context);
-                    boolean result = helper.insertAttendance(datePicker.getDayOfMonth() + "/" + datePicker.getMonth() + "/" + datePicker.getYear(), subject + "", "1",day+"",id+"");
+                    boolean result = helper.insertAttendance(datePicker.getDayOfMonth() + "/" + datePicker.getMonth() + "/" + datePicker.getYear(), subject + "", vote+"",day+"",id+"");
                     if (result) {
-                        Toast.makeText(v.getContext(),"Present",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(v.getContext(),"Successful",Toast.LENGTH_SHORT).show();
                         dialog.dismiss();
                     } else {
-                        Toast.makeText(context, "Fail", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(v.getContext(), "Fail", Toast.LENGTH_SHORT).show();
                     }
-
+                    dialog.dismiss();
                 }
             });
-
         }catch (Exception e){
             Toast.makeText(v.getContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
         }
@@ -174,7 +130,7 @@ public class TimeAddDataAdapter extends RecyclerView.Adapter<TimeAddDataAdapter.
         final BottomSheetDialog dialog = new BottomSheetDialog(v.getContext());
         dialog.setContentView(view);
         dialog.show();
-        ImageView close=view.findViewById(R.id.close);
+        Button close=view.findViewById(R.id.close);
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -201,7 +157,7 @@ public class TimeAddDataAdapter extends RecyclerView.Adapter<TimeAddDataAdapter.
         note.setText(s7);
         final String eid=id;
         final String eday=day;
-        LinearLayout edit=view.findViewById(R.id.edit);
+        Button edit=view.findViewById(R.id.edit);
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -212,7 +168,7 @@ public class TimeAddDataAdapter extends RecyclerView.Adapter<TimeAddDataAdapter.
                 context.startActivity(edit_intent);
             }
         });
-        LinearLayout delete=view.findViewById(R.id.delete);
+        Button delete=view.findViewById(R.id.delete);
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -276,7 +232,8 @@ public class TimeAddDataAdapter extends RecyclerView.Adapter<TimeAddDataAdapter.
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView ani1, ani2, ani3;
+        RadioGroup radioGroup;
+        RadioButton present_radio,absent_radio;
         CardView show;
         public TextView start,end,subject,submit;
         public ViewHolder(@NonNull View itemView) {
@@ -285,9 +242,9 @@ public class TimeAddDataAdapter extends RecyclerView.Adapter<TimeAddDataAdapter.
             this.end=itemView.findViewById(R.id.end);
             this.subject=itemView.findViewById(R.id.subject);
             this.submit=itemView.findViewById(R.id.submit);
-            this.ani1 = itemView.findViewById(R.id.ani1);
-            this.ani2 = itemView.findViewById(R.id.ani2);
-            this.ani3 = itemView.findViewById(R.id.ani3);
+            this.radioGroup = itemView.findViewById(R.id.radioGroup);
+            this.present_radio = itemView.findViewById(R.id.present_radio);
+            this.absent_radio = itemView.findViewById(R.id.absent_radio);
             this.show = itemView.findViewById(R.id.show);
 
         }

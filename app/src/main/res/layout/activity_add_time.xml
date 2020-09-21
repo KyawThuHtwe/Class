@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/idlayout">
     <LinearLayout
-        android:background="@color/colorCardView"
+        android:background="@color/colorDivider"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

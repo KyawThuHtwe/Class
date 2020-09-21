@@ -1,17 +1,11 @@
 package com.cu.aclass.Adapter;
 
-import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -22,13 +16,12 @@ import com.cu.aclass.MainActivity;
 import com.cu.aclass.Model.NoteData;
 import com.cu.aclass.Note.AddNoteActivity;
 import com.cu.aclass.R;
-import com.cu.aclass.TimeTable.AddTimeActivity;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
@@ -85,10 +78,24 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
     private void action(View v, String id, final String title, final String subject, final String time, final String day) {
         try {
+            /*
             View view = LayoutInflater.from(v.getContext()).inflate(R.layout.action_bottom_sheet, null);
             final BottomSheetDialog dialog = new BottomSheetDialog(v.getContext());
             dialog.setContentView(view);
             dialog.show();
+             */
+            final AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext(),R.style.AlertDialogTheme);
+            View view = LayoutInflater.from(v.getContext()).inflate(R.layout.action_bottom_sheet,null);
+            builder.setView(view);
+            final AlertDialog dialog = builder.create();
+            dialog.show();
+            ImageView close=view.findViewById(R.id.close);
+            close.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                }
+            });
             final Button edit = view.findViewById(R.id.edit);
             Button delete=view.findViewById(R.id.delete);
             final String eid=id;
@@ -129,6 +136,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
                 }
             });
+
 
         }catch (Exception e){
             Toast.makeText(v.getContext(),e.getMessage(),Toast.LENGTH_SHORT).show();

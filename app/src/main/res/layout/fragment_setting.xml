@@ -6,24 +6,108 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.SettingFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent">
         <androidx.cardview.widget.CardView
-            android:layout_margin="@dimen/_3sdp"
+            android:layout_margin="@dimen/_5sdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <LinearLayout
-                android:background="@color/colorCardView"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textSize="@dimen/_14ssp"
+                    android:padding="@dimen/_10sdp"
+                    android:textColor="@color/colorTextPrimary"
+                    android:text="@string/developed_by"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <View
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:background="@color/colorTextHint"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1ssp"/>
+
+                <LinearLayout
+                    android:gravity="center_vertical"
+                    android:padding="15dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:scaleType="centerCrop"
+                        android:src="@mipmap/ic_launcher"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"/>
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_marginLeft="10dp"
+                        android:orientation="vertical"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        tools:ignore="RtlHardcoded">
+                        <TextView
+                            android:padding="2dp"
+                            android:textSize="@dimen/_12ssp"
+                            android:text="@string/kyaw_thu"
+                            android:textColor="@color/colorTextPrimary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/email"
+                                android:padding="2dp"
+                                android:textSize="@dimen/_12ssp"
+                                android:text="@string/copypaste673_gmail_com"
+                                android:textColor="@color/colorTextPrimary"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textSize="@dimen/_12ssp"
+                        android:layout_weight="1"
+                        android:padding="15dp"
+                        android:text="@string/build_app_13_8_2020"
+                        android:textColor="@color/colorTextPrimary"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:textSize="@dimen/_12ssp"
+                        android:gravity="center"
+                        android:padding="15dp"
+                        android:text="@string/version_1"
+                        android:textColor="@color/colorTextPrimary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <TextView
                     android:textSize="@dimen/_14ssp"
-                    android:textStyle="bold"
                     android:padding="@dimen/_10sdp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintBottom_toBottomOf="@+id/bg"
@@ -31,11 +115,13 @@
                     android:textColor="@color/colorTextPrimary"
                     android:text="@string/setting"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:paddingStart="@dimen/_10sdp"
+                    tools:ignore="RtlSymmetry" />
                 <View
                     android:layout_marginRight="@dimen/_10sdp"
                     android:layout_marginLeft="@dimen/_10sdp"
-                    android:background="@color/colorDivider"
+                    android:background="@color/colorTextHint"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_1ssp"/>
                 <RelativeLayout
@@ -53,16 +139,20 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_delete"
-                        tools:ignore="UseAppTint" />
+                        tools:ignore="UseAppTint"
+                        android:contentDescription="@string/app_name" />
                     <TextView
                         android:textColor="@color/colorTextPrimary"
                         android:layout_centerVertical="true"
                         android:layout_toRightOf="@+id/deleteNote1"
                         android:paddingRight="5dp"
                         android:textSize="@dimen/_12ssp"
-                        android:text="Note Database"
+                        android:text="@string/note_database"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/deleteNote1"
+                        android:paddingEnd="5dp"
+                        tools:ignore="RtlSymmetry" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -78,16 +168,20 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_delete"
-                        tools:ignore="UseAppTint" />
+                        tools:ignore="UseAppTint"
+                        android:contentDescription="@string/app_name" />
                     <TextView
                         android:textColor="@color/colorTextPrimary"
                         android:layout_centerVertical="true"
                         android:layout_toRightOf="@+id/deleteicon1"
                         android:paddingRight="5dp"
                         android:textSize="@dimen/_12ssp"
-                        android:text="Time Database"
+                        android:text="@string/time_database"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:paddingEnd="5dp"
+                        android:layout_toEndOf="@+id/deleteicon1"
+                        tools:ignore="RtlSymmetry" />
                 </RelativeLayout>
                 <RelativeLayout
                     android:id="@+id/rollcall"
@@ -102,121 +196,22 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_delete"
-                        tools:ignore="UseAppTint" />
+                        tools:ignore="UseAppTint"
+                        android:contentDescription="@string/app_name" />
                     <TextView
                         android:textColor="@color/colorTextPrimary"
                         android:layout_centerVertical="true"
                         android:layout_toRightOf="@+id/deleteicon2"
                         android:paddingRight="5dp"
                         android:textSize="@dimen/_12ssp"
-                        android:text="Attendance Database"
+                        android:text="@string/attendance_database"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:paddingEnd="5dp"
+                        android:layout_toEndOf="@+id/deleteicon2"
+                        tools:ignore="RtlSymmetry" />
                 </RelativeLayout>
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_marginLeft="@dimen/_3sdp"
-            android:layout_marginRight="@dimen/_3sdp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <LinearLayout
-                android:background="@color/colorCardView"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    app:layout_constraintBottom_toBottomOf="@+id/communicate"
-                    android:textColor="@color/colorTextPrimary"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/_14ssp"
-                    android:padding="@dimen/_10sdp"
-                    android:text="@string/communicate"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <View
-                    android:layout_marginRight="@dimen/_10sdp"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:background="@color/colorDivider"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_1ssp"/>
-
-                <RelativeLayout
-                    android:id="@+id/share"
-                    android:padding="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:tint="@color/colorTextPrimary"
-                        android:layout_centerVertical="true"
-                        android:id="@+id/shareicon"
-                        android:padding="5dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_share"
-                        tools:ignore="UseAppTint" />
-                    <TextView
-                        android:textColor="@color/colorTextPrimary"
-                        android:layout_centerVertical="true"
-                        android:layout_toRightOf="@+id/shareicon"
-                        android:paddingRight="5dp"
-                        android:textSize="@dimen/_12ssp"
-                        android:text="Share"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                </RelativeLayout>
-                <RelativeLayout
-                    android:id="@+id/feedback"
-                    android:padding="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:tint="@color/colorTextPrimary"
-                        android:layout_centerVertical="true"
-                        android:id="@+id/feedbackicone"
-                        android:padding="5dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_feedback"
-                        tools:ignore="UseAppTint" />
-                    <TextView
-                        android:textColor="@color/colorTextPrimary"
-                        android:layout_centerVertical="true"
-                        android:layout_toRightOf="@+id/feedbackicone"
-                        android:paddingRight="5dp"
-                        android:textSize="@dimen/_12ssp"
-                        android:text="Feedback"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                </RelativeLayout>
-                <RelativeLayout
-                    android:id="@+id/about"
-                    android:padding="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:tint="@color/colorTextPrimary"
-                        android:layout_centerVertical="true"
-                        android:id="@+id/abouticon"
-                        android:padding="5dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_baseline_info_24"
-                        tools:ignore="UseAppTint" />
-                    <TextView
-                        android:textColor="@color/colorTextPrimary"
-                        android:layout_centerVertical="true"
-                        android:layout_toRightOf="@+id/abouticon"
-                        android:paddingRight="5dp"
-                        android:textSize="@dimen/_12ssp"
-                        android:text="About"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                </RelativeLayout>
-
-            </LinearLayout>
-
         </androidx.cardview.widget.CardView>
 
     </LinearLayout>

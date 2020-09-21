@@ -32,22 +32,8 @@ public class SettingFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_setting, container, false);
-        RelativeLayout timetable,attendance,about,note,feedback,share;
-        feedback=view.findViewById(R.id.feedback);
-        share=view.findViewById(R.id.share);
-        about=view.findViewById(R.id.about);
-        feedback.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:copypaste673@gmail.com")));
-            }
-        });
-        about.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               startActivity(new Intent(getContext(), AboutActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-            }
-        });
+        RelativeLayout timetable,attendance,note;
+
         timetable=view.findViewById(R.id.timetable);
         attendance=view.findViewById(R.id.rollcall);
         note=view.findViewById(R.id.note);

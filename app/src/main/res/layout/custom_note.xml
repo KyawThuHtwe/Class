@@ -5,15 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <androidx.cardview.widget.CardView
-        android:layout_marginBottom="@dimen/_3sdp"
-        android:layout_marginTop="@dimen/_3sdp"
-        android:layout_marginRight="@dimen/_3sdp"
-        android:layout_marginLeft="@dimen/_3sdp"
+        android:layout_margin="@dimen/_5sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
             android:id="@+id/layout"
-            android:background="@color/colorCardView"
+            android:background="@color/colorDivider"
             android:padding="@dimen/_10sdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -62,9 +59,10 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/date2" />
                 <TextView
+                    android:backgroundTint="@color/colorTime"
                     android:padding="@dimen/_5sdp"
                     android:background="@drawable/action"
-                    android:textColor="@color/colorTime"
+                    android:textColor="@color/colorWhite"
                     android:textSize="@dimen/_12ssp"
                     android:id="@+id/time"
                     android:layout_alignParentRight="true"
@@ -75,20 +73,14 @@
                     tools:ignore="RelativeOverlap" />
 
             </RelativeLayout>
-            <RelativeLayout
-                android:padding="@dimen/_5sdp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:textColor="@color/colorTextPrimary"
-                    android:textSize="@dimen/_14ssp"
-                    android:id="@+id/type"
-                    android:text="@string/title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-            </RelativeLayout>
+            <TextView
+                android:paddingLeft="@dimen/_5sdp"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="@dimen/_14ssp"
+                android:id="@+id/type"
+                android:text="@string/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
             <TextView
                 android:paddingLeft="@dimen/_5sdp"
                 android:textColor="@color/colorTextPrimary"

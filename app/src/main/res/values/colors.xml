@@ -8,9 +8,10 @@
     <color name="colorTextSecondary">#757575</color>
     <color name="colorTextHint">#bdbdbd</color>
     <color name="colorSelectedMenu">#408ded</color>
-    <color name="colorBackground">@android:color/holo_orange_light</color>
-    <color name="colorCardView">@android:color/holo_orange_light</color>
+    <color name="colorBackground">#408ded</color>
+    <color name="colorCardView">#408ded</color>
     <color name="colorDivider">#ECECEC</color>
     <color name="colorSpinner">#E3B958</color>
     <color name="colorTime">#D81B60</color>
+    <color name="colorAttendance">#3E050F</color>
 </resources>

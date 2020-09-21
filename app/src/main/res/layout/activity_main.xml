@@ -6,7 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/colorWhite">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.appbar.AppBarLayout>
     <FrameLayout
+        android:layout_marginTop="?actionBarSize"
+        app:layout_constraintTop_toBottomOf="@id/appbar"
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -18,7 +32,6 @@
             android:id="@+id/smoothBottomBar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_60sdp"
-            app:backgroundColor="@color/colorBackground"
             app:iconSize="@dimen/_19sdp"
             app:iconTint="@color/colorTextPrimary"
             app:iconTintActive="@color/colorWhite"
