@@ -13,8 +13,6 @@
         android:theme="@style/AppTheme">
         <activity android:name=".AboutActivity" />
         <activity android:name=".Note.AddNoteActivity" />
-        <activity android:name=".Report.MonthlyActivity" />
-        <activity android:name=".Report.WeeklyActivity" />
         <activity android:name=".TimeTable.AddTimeActivity" />
         <activity android:name=".TimeTable.SatActivity" />
         <activity android:name=".TimeTable.SunActivity" />
