@@ -66,7 +66,7 @@ public class AddTimeActivity extends AppCompatActivity {
         save_text=findViewById(R.id.save_text);
         final String id=intent.getStringExtra("Id");
         if(id==null){
-            save_text.setText(R.string.insert);
+            save_text.setText(R.string.save);
         }else {
             save_text.setText(R.string.update);
         }

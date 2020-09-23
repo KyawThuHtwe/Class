@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
             //smoothBottomBar.setActiveItem(0);
             LoadFragment(TimeFragment.newInstance());
         }else if(fragment.equals("Note")){
-            smoothBottomBar.setActiveItem(1);
+            smoothBottomBar.setActiveItem(2);
             LoadFragment(NoteFragment.newInstance());
         }
 

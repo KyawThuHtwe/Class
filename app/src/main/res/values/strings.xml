@@ -25,7 +25,7 @@
     <string name="delete">Delete</string>
     <string name="class_time">Class Time</string>
     <string name="update">Update</string>
-    <string name="insert">Insert</string>
+    <string name="save">Save</string>
     <string name="present">Present</string>
     <string name="attendance">Attendance</string>
     <string name="_0_0">0.0</string>
@@ -55,7 +55,6 @@
     <string name="date">Date</string>
     <string name="record">Record</string>
     <string name="save_as">Save as</string>
-    <string name="save">Save</string>
     <string name="close">Close</string>
     <string name="cent">%</string>
     <string name="total">Total</string>

@@ -56,7 +56,7 @@ public class NoteFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(getContext(),AddNoteActivity.class);
-                intent.putExtra("Note_Action","Insert");
+                intent.putExtra("Note_Action","Add Note");
                 startActivity(intent);
             }
         });

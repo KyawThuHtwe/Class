@@ -68,7 +68,7 @@
                         android:textColor="@color/colorTextPrimary"
                         android:textSize="@dimen/_15ssp"
                         android:layout_gravity="center_vertical"
-                        android:text="@string/insert"
+                        android:text="@string/save"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>

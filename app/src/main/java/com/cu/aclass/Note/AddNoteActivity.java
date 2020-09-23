@@ -75,8 +75,8 @@ public class AddNoteActivity extends AppCompatActivity {
             String date_t=intent.getStringExtra("Date");
             title_action.setText(actions);
             assert actions != null;
-            if(actions.equals("Insert")) {
-                action.setText("Insert");
+            if(actions.equals("Add Note")) {
+                action.setText("Save");
                 save.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
