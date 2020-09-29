@@ -2,8 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.cu.aclass">
 
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AboutActivity" />
+        <activity android:name=".Activity.DataListActivity"></activity>
+        <activity android:name=".Activity.AboutActivity" />
         <activity android:name=".Note.AddNoteActivity" />
         <activity android:name=".TimeTable.AddTimeActivity" />
         <activity android:name=".TimeTable.SatActivity" />
@@ -21,13 +20,26 @@
         <activity android:name=".TimeTable.WedActivity" />
         <activity android:name=".TimeTable.TueActivity" />
         <activity android:name=".TimeTable.MonActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <receiver android:name=".Activity.TimeWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/time_widget_info" />
+        </receiver>
     </application>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
 </manifest>

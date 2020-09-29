@@ -51,7 +51,6 @@
     <string name="no_note">No Note</string>
     <string name="are_you_sure_want_to_submit">Are you sure want to submit?</string>
     <string name="ok">Ok</string>
-    <string name="cancel">Cancel</string>
     <string name="date">Date</string>
     <string name="record">Record</string>
     <string name="save_as">Save as</string>
@@ -67,4 +66,15 @@
     <string name="note_database">Note Database</string>
     <string name="time_database">Time Database</string>
     <string name="attendance_database">Attendance Database</string>
+    <string name="widget">Widget</string>
+    <string name="theme">Theme</string>
+    <string name="data_list">Data List</string>
+    <string name="default_database">Default Database</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="actionbar">ActionBar</string>
+    <string name="layout">Layout</string>
+    <string name="apply">Apply</string>
+    <string name="cancel">Cancel</string>
+    <string name="customize">Customize</string>
 </resources>

@@ -1,15 +1,15 @@
 package com.cu.aclass.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
+import android.content.SharedPreferences;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -17,20 +17,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cu.aclass.DatabaseHelper.DatabaseHelper;
-import com.cu.aclass.MainActivity;
+import com.cu.aclass.Activity.MainActivity;
 import com.cu.aclass.Model.TimeAddData;
 import com.cu.aclass.R;
 import com.cu.aclass.TimeTable.AddTimeActivity;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class TimeAddDataAdapter extends RecyclerView.Adapter<TimeAddDataAdapter.ViewHolder> {
@@ -75,6 +76,7 @@ public class TimeAddDataAdapter extends RecyclerView.Adapter<TimeAddDataAdapter.
         holder.end.setText(time(timeAddData.get(position).getEnd()));
 
         holder.show.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
                 openBottomSheet(v,timeAddData.get(position).getId()+"",holder.start.getText()+"",holder.end.getText()+"",
@@ -125,11 +127,17 @@ public class TimeAddDataAdapter extends RecyclerView.Adapter<TimeAddDataAdapter.
         }
     }
 
-    private void openBottomSheet(View v,String id, String s, String s1, String s2, String s3, String s4, String s5, String s6, String s7, String day) {
+    @SuppressLint({"UseCompatLoadingForColorStateLists", "NewApi"})
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    private void openBottomSheet(View v, String id, String s, String s1, String s2, String s3, String s4, String s5, String s6, String s7, String day) {
         View view = LayoutInflater.from(v.getContext()).inflate(R.layout.time_bottom_sheet, null);
         final BottomSheetDialog dialog = new BottomSheetDialog(v.getContext());
         dialog.setContentView(view);
         dialog.show();
+        ConstraintLayout constraintLayout=view.findViewById(R.id.bottomSheetContainer);
+        LinearLayout linearLayout=view.findViewById(R.id.action_color);
+        constraintLayout.setBackgroundColor(readLayoutColor());
+       // linearLayout.setBackgroundTintList(context.getResources().getColorStateList(readActionBarColor()));
         Button close=view.findViewById(R.id.close);
         close.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -192,7 +200,16 @@ public class TimeAddDataAdapter extends RecyclerView.Adapter<TimeAddDataAdapter.
         });
 
     }
-
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public int readActionBarColor(){
+        SharedPreferences sharedPreferences= context.getSharedPreferences("Color", Context.MODE_PRIVATE);
+        return sharedPreferences.getInt("ActionBarColor",context.getResources().getColor(R.color.colorPrimary));
+    }
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public int readLayoutColor(){
+        SharedPreferences sharedPreferences=context.getSharedPreferences("Color", Context.MODE_PRIVATE);
+        return sharedPreferences.getInt("LayoutColor",context.getResources().getColor(R.color.colorDivider));
+    }
     public String time(String time){
         int hr = 0,min;
         String s=null,des;

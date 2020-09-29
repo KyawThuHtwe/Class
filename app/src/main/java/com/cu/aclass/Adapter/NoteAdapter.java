@@ -12,7 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cu.aclass.DatabaseHelper.DatabaseHelper;
-import com.cu.aclass.MainActivity;
+import com.cu.aclass.Activity.MainActivity;
 import com.cu.aclass.Model.NoteData;
 import com.cu.aclass.Note.AddNoteActivity;
 import com.cu.aclass.R;

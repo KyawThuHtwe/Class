@@ -1,4 +1,4 @@
-package com.cu.aclass;
+package com.cu.aclass.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -11,6 +11,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.cu.aclass.R;
 
 public class AboutActivity extends AppCompatActivity {
 

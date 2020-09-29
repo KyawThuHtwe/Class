@@ -1,6 +1,6 @@
-package com.cu.aclass;
+package com.cu.aclass.Activity;
 
-import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -10,40 +10,34 @@ import me.ibrahimsn.lib.OnItemSelectedListener;
 import me.ibrahimsn.lib.SmoothBottomBar;
 
 import android.annotation.SuppressLint;
-import android.database.Cursor;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.inputmethod.EditorInfo;
-import android.widget.SearchView;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.FrameLayout;
 
-import com.cu.aclass.Adapter.NoteAdapter;
-import com.cu.aclass.DatabaseHelper.DatabaseHelper;
 import com.cu.aclass.Fragments.NoteFragment;
 import com.cu.aclass.Fragments.ReportFragment;
 import com.cu.aclass.Fragments.SettingFragment;
 import com.cu.aclass.Fragments.TimeFragment;
-import com.cu.aclass.Model.NoteData;
+import com.cu.aclass.R;
 
 import java.text.DateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-
-import static android.view.View.VISIBLE;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
     ActionBar actionBar;
-    @SuppressLint("RestrictedApi")
+    FrameLayout frameLayout;
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    @SuppressLint({"RestrictedApi", "ResourceType"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar=findViewById(R.id.toolbar);
+        frameLayout=findViewById(R.id.frameLayout);
         setSupportActionBar(toolbar);
         actionBar=getSupportActionBar();
         Calendar calendar=Calendar.getInstance();
@@ -59,8 +53,13 @@ public class MainActivity extends AppCompatActivity {
             smoothBottomBar.setActiveItem(2);
             LoadFragment(NoteFragment.newInstance());
         }
+        toolbar.setBackgroundColor(readActionBarColor());
+        getWindow().setStatusBarColor(readActionBarColor());
+        getWindow().setNavigationBarColor(readActionBarColor());
+        frameLayout.setBackgroundColor(readLayoutColor());
 
         smoothBottomBar.setOnItemSelectedListener(new OnItemSelectedListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onItemSelect(int i) {
                 switch (i){
@@ -87,6 +86,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public int readActionBarColor(){
+        SharedPreferences sharedPreferences= getSharedPreferences("Color", Context.MODE_PRIVATE);
+        return sharedPreferences.getInt("ActionBarColor",getResources().getColor(R.color.colorPrimary));
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public int readLayoutColor(){
+        SharedPreferences sharedPreferences=getSharedPreferences("Color", Context.MODE_PRIVATE);
+        return sharedPreferences.getInt("LayoutColor",getResources().getColor(R.color.colorDivider));
+    }
+
     public void LoadFragment(Fragment fragment){
         FragmentTransaction ft=getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.frameLayout,fragment).commit();

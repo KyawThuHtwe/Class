@@ -16,16 +16,11 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.cu.aclass.Adapter.TimeAddDataAdapter;
 import com.cu.aclass.DatabaseHelper.DatabaseHelper;
-import com.cu.aclass.MainActivity;
-import com.cu.aclass.Model.TimeAddData;
+import com.cu.aclass.Activity.MainActivity;
 import com.cu.aclass.R;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-
-import static android.view.View.VISIBLE;
 
 public class AddTimeActivity extends AppCompatActivity {
 

@@ -31,7 +31,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cu.aclass.DatabaseHelper.DatabaseHelper;
-import com.cu.aclass.MainActivity;
 import com.cu.aclass.Model.AttendanceData;
 import com.cu.aclass.Model.SubjectData;
 import com.cu.aclass.R;

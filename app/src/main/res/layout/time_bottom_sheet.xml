@@ -34,6 +34,7 @@
                     android:layout_height="wrap_content"
                     tools:ignore="RelativeOverlap" />
                 <LinearLayout
+                    android:id="@+id/action_color"
                     android:background="@drawable/action"
                     android:gravity="center"
                     android:orientation="horizontal"

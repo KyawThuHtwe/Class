@@ -16,7 +16,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.cu.aclass.DatabaseHelper.DatabaseHelper;
-import com.cu.aclass.MainActivity;
+import com.cu.aclass.Activity.MainActivity;
 import com.cu.aclass.R;
 
 import java.util.Calendar;
