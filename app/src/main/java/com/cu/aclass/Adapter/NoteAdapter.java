@@ -1,7 +1,11 @@
 package com.cu.aclass.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Build;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +23,10 @@ import com.cu.aclass.R;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Objects;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -40,9 +46,11 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
         return new ViewHolder(view);
     }
 
-
+    @SuppressLint("SetTextI18n")
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
+        holder.show.setBackgroundColor(readNoteColor());
         holder.show.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,7 +83,13 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
             }
         }
     }
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public int readNoteColor(){
+        SharedPreferences sharedPreferences= context.getSharedPreferences("Color", Context.MODE_PRIVATE);
+        return sharedPreferences.getInt("NoteColor",context.getResources().getColor(R.color.colorDivider));
+    }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void action(View v, String id, final String title, final String subject, final String time, final String day) {
         try {
             /*
@@ -89,6 +103,8 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
             builder.setView(view);
             final AlertDialog dialog = builder.create();
             dialog.show();
+            LinearLayout action_layout=view.findViewById(R.id.action_layout);
+            action_layout.setBackgroundColor(readActionBarColor());
             ImageView close=view.findViewById(R.id.close);
             close.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -115,13 +131,22 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
                 }
             });
             delete.setOnClickListener(new View.OnClickListener() {
+                @SuppressLint("SetTextI18n")
                 @Override
                 public void onClick(View v) {
                     try {
                         DatabaseHelper helper = new DatabaseHelper(context);
                         int res = helper.deleteNote(eid);
                         if (res == 1) {
-                            Toast.makeText(context, "Deleted", Toast.LENGTH_SHORT).show();
+                            @SuppressLint("InflateParams") View view = LayoutInflater.from(context).inflate(R.layout.toast_time_add_successful, null);
+                            Toast toast = Toast.makeText(context, "Deleted Successfully", Toast.LENGTH_SHORT);
+                            LinearLayout linearLayout = view.findViewById(R.id.layout);
+                            linearLayout.setBackgroundColor(readActionBarColor());
+                            TextView type=view.findViewById(R.id.type);
+                            type.setText("Deleted Successfully");
+                            toast.setGravity(Gravity.BOTTOM, 0, 100);
+                            toast.setView(view);
+                            toast.show();
                             dialog.dismiss();
                             Intent main=new Intent(context, MainActivity.class);
                             main.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -143,7 +168,11 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
         }
 
     }
-
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public int readActionBarColor(){
+        SharedPreferences sharedPreferences= context.getSharedPreferences("Color", Context.MODE_PRIVATE);
+        return sharedPreferences.getInt("ActionBarColor",context.getResources().getColor(R.color.colorPrimary));
+    }
     public String time(String time){
         int hr = 0,min;
         String s=null,des;

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <androidx.cardview.widget.CardView
+        android:layout_margin="@dimen/_5sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/layout"
+            android:padding="@dimen/_10sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:paddingBottom="@dimen/_8sdp"
+                android:paddingLeft="@dimen/_5sdp"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="@dimen/_14ssp"
+                android:id="@+id/subject"
+                android:text="@string/subject"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/_5sdp"
+                tools:ignore="RtlSymmetry" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_toLeftOf="@id/date2"
+                    android:gravity="center"
+                    android:padding="@dimen/_5sdp"
+                    android:background="@drawable/action"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/_12ssp"
+                    android:id="@+id/date1"
+                    android:text="@string/_12"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_toStartOf="@id/date2" />
+                <TextView
+                    android:layout_toLeftOf="@id/date3"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:gravity="center"
+                    android:padding="@dimen/_5sdp"
+                    android:background="@drawable/action"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/_12ssp"
+                    android:id="@+id/date2"
+                    android:text="@string/_12"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_toStartOf="@id/date3" />
+                <TextView
+                    android:layout_alignParentRight="true"
+                    android:gravity="center"
+                    android:padding="@dimen/_5sdp"
+                    android:background="@drawable/action"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/_12ssp"
+                    android:id="@+id/date3"
+                    android:text="@string/_2020"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true" />
+                <TextView
+                    android:backgroundTint="@color/colorDivider"
+                    android:layout_alignParentLeft="true"
+                    android:gravity="center"
+                    android:paddingTop="@dimen/_5sdp"
+                    android:paddingBottom="@dimen/_5sdp"
+                    android:paddingLeft="@dimen/_10ssp"
+                    android:paddingRight="@dimen/_10ssp"
+                    android:background="@drawable/action_white"
+                    android:textColor="@color/colorTextPrimary"
+                    android:textSize="@dimen/_12ssp"
+                    android:id="@+id/attendance"
+                    android:text="@string/attendance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:ignore="RelativeOverlap,RtlHardcoded,UnusedAttribute" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

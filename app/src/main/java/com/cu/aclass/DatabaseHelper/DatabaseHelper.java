@@ -16,7 +16,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE Time (ID INTEGER PRIMARY KEY AUTOINCREMENT,FROM_TIME TEXT,TO_TIME TEXT,SUBJECT TEXT,TYPE TEXT,ROOM TEXT,TEACHER TEXT,CONTACT TEXT,NOTE TEXT,DAY TEXT)");
+        db.execSQL("CREATE TABLE Time (ID INTEGER PRIMARY KEY AUTOINCREMENT,FROM_TIME TEXT,TO_TIME TEXT,SUBJECT TEXT,TYPE TEXT,ROOM TEXT,TEACHER TEXT,CONTACT TEXT,NOTE TEXT,DAY TEXT,SPINNER TEXT)");
         db.execSQL("CREATE TABLE Attendance (ID INTEGER PRIMARY KEY AUTOINCREMENT,DATE TEXT,SUBJECT TEXT,VOTE TEXT,DAY TEXT,S_SID TEXT)");
         db.execSQL("CREATE TABLE Note (ID INTEGER PRIMARY KEY AUTOINCREMENT,TITLE TEXT,SUBJECT TEXT,TIME TEXT,DATE TEXT)");
 
@@ -28,7 +28,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS Attendance");
         db.execSQL("DROP TABLE IF EXISTS Note");
     }
-    public boolean insertTime(String from_time,String to_time,String subject,String type,String room,String teacher,String contact,String note,String day){
+    public boolean insertTime(String from_time,String to_time,String subject,String type,String room,String teacher,String contact,String note,String day,String spinner){
         SQLiteDatabase db=this.getWritableDatabase();
         ContentValues contentValues=new ContentValues();
         contentValues.put("FROM_TIME",from_time);
@@ -40,6 +40,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put("CONTACT",contact);
         contentValues.put("NOTE",note);
         contentValues.put("DAY",day);
+        contentValues.put("SPINNER",spinner);
 
         long result=db.insert("Time",null,contentValues);
         db.close();
@@ -61,7 +62,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         int res=db.delete("Time","ID=?",new String[]{id});
         return res;
     }
-    public boolean updateTime(String id,String from_time,String to_time,String subject,String type,String room,String teacher,String contact,String note){
+    public boolean updateTime(String id,String from_time,String to_time,String subject,String type,String room,String teacher,String contact,String note,String spinner){
         SQLiteDatabase db=this.getWritableDatabase();
         ContentValues contentValues=new ContentValues();
         contentValues.put("ID",id);
@@ -73,6 +74,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put("TEACHER",teacher);
         contentValues.put("CONTACT",contact);
         contentValues.put("NOTE",note);
+        contentValues.put("SPINNER",spinner);
         int result=db.update("Time",contentValues,"ID=?",new String[]{id});
         if(result>0){
             return true;

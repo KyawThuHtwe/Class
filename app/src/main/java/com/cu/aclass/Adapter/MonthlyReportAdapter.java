@@ -4,6 +4,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -68,10 +69,12 @@ public class MonthlyReportAdapter extends RecyclerView.Adapter<MonthlyReportAdap
         return new ViewHolder(view);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
 
+        holder.report_layout.setBackgroundColor(readReportColor());
         holder.subject.setText(subjectData.get(position).getSubject());
         double total=0;
         int present_count=0;
@@ -149,7 +152,7 @@ public class MonthlyReportAdapter extends RecyclerView.Adapter<MonthlyReportAdap
     }
     String date=null,attendance=null;
     public void detail(View v, int select_month, String sub){
-        View view = LayoutInflater.from(v.getContext()).inflate(R.layout.report_detail, null);
+        @SuppressLint("InflateParams") View view = LayoutInflater.from(v.getContext()).inflate(R.layout.report_detail, null);
         final BottomSheetDialog dialog = new BottomSheetDialog(v.getContext());
         dialog.setContentView(view);
         dialog.show();
@@ -440,13 +443,18 @@ public class MonthlyReportAdapter extends RecyclerView.Adapter<MonthlyReportAdap
     public int getItemCount() {
         return subjectData.size();
     }
-
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public int readReportColor(){
+        SharedPreferences sharedPreferences= context.getSharedPreferences("Color", Context.MODE_PRIVATE);
+        return sharedPreferences.getInt("ReportColor",context.getResources().getColor(R.color.colorDivider));
+    }
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView subject,record_text;
         public ProgressBar record_progress,progressBar_present,progressBar_absent;
         public TextView percent_present,percent_absent;
         public TextView attendance1,attendance2,attendance3,attendance4;
         public CardView cardView;
+        public LinearLayout report_layout;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -462,6 +470,7 @@ public class MonthlyReportAdapter extends RecyclerView.Adapter<MonthlyReportAdap
             this.attendance3 = itemView.findViewById(R.id.attendance3);
             this.attendance4 = itemView.findViewById(R.id.attendance4);
             this.cardView=itemView.findViewById(R.id.cardView);
+            this.report_layout=itemView.findViewById(R.id.report_layout);
         }
     }
 }

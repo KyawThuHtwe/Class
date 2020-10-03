@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +17,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.cu.aclass.DatabaseHelper.DatabaseHelper;
 import com.cu.aclass.Activity.MainActivity;
+import com.cu.aclass.DatabaseHelper.DatabaseHelper;
 import com.cu.aclass.Model.TimeAddData;
 import com.cu.aclass.R;
 import com.cu.aclass.TimeTable.AddTimeActivity;
@@ -52,8 +53,13 @@ public class TimeAddDataAdapter extends RecyclerView.Adapter<TimeAddDataAdapter.
         return new ViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
+        int spin=Integer.parseInt(timeAddData.get(position).getSpinner())+1;
+        holder.spinner.setText(spin+"");
+        holder.time_layout.setBackgroundColor(readTimeColor());
         holder.radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -86,16 +92,28 @@ public class TimeAddDataAdapter extends RecyclerView.Adapter<TimeAddDataAdapter.
             }
         });
     }
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public int readTimeColor(){
+        SharedPreferences sharedPreferences= context.getSharedPreferences("Color", Context.MODE_PRIVATE);
+        return sharedPreferences.getInt("TimeColor",context.getResources().getColor(R.color.colorWhite));
+    }
 
+    @SuppressLint("SetTextI18n")
     private void present(View v, final String id, final String subject, final String day, final String vote) {
         try {
             final AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext(),R.style.AlertDialogTheme);
             View view = LayoutInflater.from(v.getContext()).inflate(R.layout.attendance_submit, (LinearLayout) v.findViewById(R.id.layout));
             builder.setView(view);
             TextView today=view.findViewById(R.id.today);
+            TextView quest=view.findViewById(R.id.quest);
             Calendar calendar=Calendar.getInstance();
             String cur_date= DateFormat.getDateInstance().format(calendar.getTime());
             today.setText(cur_date);
+            if(vote.equals("1")){
+                quest.setText("Are you sure want to present?");
+            }else{
+                quest.setText("Are you sure want to absent?");
+            }
 
             Button cancel = view.findViewById(R.id.cancel);
             Button ok = view.findViewById(R.id.ok);
@@ -108,13 +126,22 @@ public class TimeAddDataAdapter extends RecyclerView.Adapter<TimeAddDataAdapter.
                 }
             });
             ok.setOnClickListener(new View.OnClickListener() {
+                @RequiresApi(api = Build.VERSION_CODES.KITKAT)
                 @Override
                 public void onClick(View v) {
                     DatePicker datePicker = new DatePicker(context);
                     DatabaseHelper helper = new DatabaseHelper(context);
                     boolean result = helper.insertAttendance(datePicker.getDayOfMonth() + "/" + datePicker.getMonth() + "/" + datePicker.getYear(), subject + "", vote+"",day+"",id+"");
                     if (result) {
-                        Toast.makeText(v.getContext(),"Successful",Toast.LENGTH_SHORT).show();
+                        @SuppressLint("InflateParams") View view = LayoutInflater.from(context).inflate(R.layout.toast_time_add_successful, null);
+                        Toast toast = Toast.makeText(context, "Attendance Successfully", Toast.LENGTH_SHORT);
+                        LinearLayout linearLayout = view.findViewById(R.id.layout);
+                        linearLayout.setBackgroundColor(readActionBarColor());
+                        TextView type=view.findViewById(R.id.type);
+                        type.setText("Attendance Complete");
+                        toast.setGravity(Gravity.BOTTOM, 0, 100);
+                        toast.setView(view);
+                        toast.show();
                         dialog.dismiss();
                     } else {
                         Toast.makeText(v.getContext(), "Fail", Toast.LENGTH_SHORT).show();
@@ -130,14 +157,12 @@ public class TimeAddDataAdapter extends RecyclerView.Adapter<TimeAddDataAdapter.
     @SuppressLint({"UseCompatLoadingForColorStateLists", "NewApi"})
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void openBottomSheet(View v, String id, String s, String s1, String s2, String s3, String s4, String s5, String s6, String s7, String day) {
-        View view = LayoutInflater.from(v.getContext()).inflate(R.layout.time_bottom_sheet, null);
+        @SuppressLint("InflateParams") View view = LayoutInflater.from(v.getContext()).inflate(R.layout.time_bottom_sheet, null);
         final BottomSheetDialog dialog = new BottomSheetDialog(v.getContext());
         dialog.setContentView(view);
         dialog.show();
         ConstraintLayout constraintLayout=view.findViewById(R.id.bottomSheetContainer);
-        LinearLayout linearLayout=view.findViewById(R.id.action_color);
         constraintLayout.setBackgroundColor(readLayoutColor());
-       // linearLayout.setBackgroundTintList(context.getResources().getColorStateList(readActionBarColor()));
         Button close=view.findViewById(R.id.close);
         close.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -178,13 +203,23 @@ public class TimeAddDataAdapter extends RecyclerView.Adapter<TimeAddDataAdapter.
         });
         Button delete=view.findViewById(R.id.delete);
         delete.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
                 try {
                     DatabaseHelper helper = new DatabaseHelper(context);
                     int res = helper.deleteTime(eid);
                     if (res == 1) {
-                        Toast.makeText(context, "Deleted", Toast.LENGTH_SHORT).show();
+                        @SuppressLint("InflateParams") View view = LayoutInflater.from(context).inflate(R.layout.toast_time_add_successful, null);
+                        Toast toast = Toast.makeText(context, "Deleted Successfully", Toast.LENGTH_SHORT);
+                        LinearLayout linearLayout = view.findViewById(R.id.layout);
+                        linearLayout.setBackgroundColor(readActionBarColor());
+                        TextView type=view.findViewById(R.id.type);
+                        type.setText("Deleted Successfully");
+                        toast.setGravity(Gravity.BOTTOM, 0, 100);
+                        toast.setView(view);
+                        toast.show();
+
                         dialog.dismiss();
                         Intent main=new Intent(context, MainActivity.class);
                         main.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -228,7 +263,7 @@ public class TimeAddDataAdapter extends RecyclerView.Adapter<TimeAddDataAdapter.
             }
 
         }catch (NumberFormatException nfe){
-            Toast.makeText(context,nfe.getMessage(),Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context,nfe.getMessage(),Toast.LENGTH_SHORT).show();
             if(s==null){
                 s="00";
             }
@@ -248,11 +283,12 @@ public class TimeAddDataAdapter extends RecyclerView.Adapter<TimeAddDataAdapter.
         return timeAddData.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         RadioGroup radioGroup;
         RadioButton present_radio,absent_radio;
         CardView show;
-        public TextView start,end,subject,submit;
+        LinearLayout time_layout;
+        public TextView start,end,subject,submit,spinner;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             this.start=itemView.findViewById(R.id.start);
@@ -263,8 +299,8 @@ public class TimeAddDataAdapter extends RecyclerView.Adapter<TimeAddDataAdapter.
             this.present_radio = itemView.findViewById(R.id.present_radio);
             this.absent_radio = itemView.findViewById(R.id.absent_radio);
             this.show = itemView.findViewById(R.id.show);
-
+            this.time_layout=itemView.findViewById(R.id.time_layout);
+            this.spinner=itemView.findViewById(R.id.spinner);
         }
-
     }
 }

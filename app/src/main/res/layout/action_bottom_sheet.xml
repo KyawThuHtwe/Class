@@ -29,6 +29,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/action_layout"
         android:background="@color/colorSelectedMenu"
         android:gravity="center"
         android:orientation="horizontal"

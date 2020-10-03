@@ -4,7 +4,7 @@
     android:initialKeyguardLayout="@layout/time_widget"
     android:initialLayout="@layout/time_widget"
     android:minWidth="250dp"
-    android:minHeight="40dp"
+    android:minHeight="110dp"
     android:previewImage="@mipmap/ic_launcher"
     android:resizeMode="horizontal|vertical"
     android:updatePeriodMillis="86400000"

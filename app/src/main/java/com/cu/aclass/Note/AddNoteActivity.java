@@ -4,8 +4,13 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -21,6 +26,7 @@ import com.cu.aclass.R;
 
 import java.util.Calendar;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class AddNoteActivity extends AppCompatActivity {
@@ -32,12 +38,20 @@ public class AddNoteActivity extends AppCompatActivity {
     public DatabaseHelper helper;
     public TextView action,title_action;
     public ImageView time_icon,date_icon;
+    LinearLayout action_layout,layout;
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_note);
         try{
+            action_layout=findViewById(R.id.action_layout);
+            layout=findViewById(R.id.layout);
+            action_layout.setBackgroundColor(readActionBarColor());
+            getWindow().setNavigationBarColor(readActionBarColor());
+            getWindow().setStatusBarColor(readActionBarColor());
+            layout.setBackgroundColor(readLayoutColor());
             back=findViewById(R.id.back);
             back.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -80,7 +94,6 @@ public class AddNoteActivity extends AppCompatActivity {
                 save.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(getApplicationContext(),"Ok",Toast.LENGTH_SHORT).show();
                         if(title.getText().toString().equals("")|| subject.getText().toString().equals("")|| time.getText().toString().equals("00:00")|| date.getText().toString().equals("00/00/0000")){
                             if(title.getText().toString().equals("")&&subject.getText().toString().equals("")&&time.getText().toString().equals("00:00")&&date.getText().toString().equals("00/00/0000")) {
                                 Toast.makeText(getApplicationContext(), "Please Fill Data", Toast.LENGTH_SHORT).show();
@@ -103,6 +116,15 @@ public class AddNoteActivity extends AppCompatActivity {
                             try {
                                 boolean i = helper.insertNote(title.getText() + "", subject.getText() + "", time.getText() + "", date.getText() + "");
                                 if (i) {
+                                    View view_update= LayoutInflater.from(getApplicationContext()).inflate(R.layout.toast_time_add_successful,null);
+                                    Toast toast=Toast.makeText(getApplicationContext(),"Note Add Successfully",Toast.LENGTH_SHORT);
+                                    LinearLayout linearLayout=view_update.findViewById(R.id.layout);
+                                    linearLayout.setBackgroundColor(readActionBarColor());
+                                    toast.setGravity(Gravity.BOTTOM,0,100);
+                                    TextView textView=view_update.findViewById(R.id.type);
+                                    textView.setText("Note Add Successfully");
+                                    toast.setView(view_update);
+                                    toast.show();
                                     Intent intent1=new Intent(getApplicationContext(), MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     intent1.putExtra("Fragment","Note");
                                     startActivity(intent1);
@@ -143,6 +165,15 @@ public class AddNoteActivity extends AppCompatActivity {
                             try {
                                 boolean i = helper.updateNote(id, title.getText() + "", subject.getText() + "", time.getText() + "", date.getText() + "");
                                 if (i) {
+                                    View view_update= LayoutInflater.from(getApplicationContext()).inflate(R.layout.toast_time_add_successful,null);
+                                    Toast toast=Toast.makeText(getApplicationContext(),"Update Successful",Toast.LENGTH_SHORT);
+                                    LinearLayout linearLayout=view_update.findViewById(R.id.layout);
+                                    linearLayout.setBackgroundColor(readActionBarColor());
+                                    toast.setGravity(Gravity.BOTTOM,0,100);
+                                    TextView textView=view_update.findViewById(R.id.type);
+                                    textView.setText("Update Successful");
+                                    toast.setView(view_update);
+                                    toast.show();
                                     Intent intent1=new Intent(getApplicationContext(), MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     intent1.putExtra("Fragment","Note");
                                     startActivity(intent1);
@@ -190,5 +221,14 @@ public class AddNoteActivity extends AppCompatActivity {
         },year,month,day);
         datePickerDialog.show();
     }
-
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public int readActionBarColor(){
+        SharedPreferences sharedPreferences= getSharedPreferences("Color", Context.MODE_PRIVATE);
+        return sharedPreferences.getInt("ActionBarColor",getResources().getColor(R.color.colorPrimary));
+    }
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public int readLayoutColor(){
+        SharedPreferences sharedPreferences= getSharedPreferences("Color", Context.MODE_PRIVATE);
+        return sharedPreferences.getInt("LayoutColor",getResources().getColor(R.color.colorTextHint));
+    }
 }

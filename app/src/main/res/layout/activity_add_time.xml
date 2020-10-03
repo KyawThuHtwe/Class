@@ -6,6 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/idlayout">
     <LinearLayout
+        android:id="@+id/layout"
         android:background="@color/colorDivider"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -17,7 +18,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="1dp">
             <LinearLayout
-                android:background="@android:color/white"
+                android:id="@+id/action_layout"
+                android:background="@color/colorPrimary"
                 android:gravity="center"
                 android:layout_gravity="center_vertical|center"
                 android:orientation="horizontal"
@@ -32,9 +34,10 @@
                     android:src="@drawable/ic_back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:contentDescription="@string/app_name" />
+                    android:contentDescription="@string/app_name"
+                    app:tint="@color/colorWhite" />
                 <TextView
-                    android:textColor="@color/colorTextPrimary"
+                    android:textColor="@color/colorWhite"
                     android:gravity="center_vertical"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="3"
@@ -57,7 +60,7 @@
                     tools:ignore="UseCompoundDrawables">
                     <ImageView
                         android:contentDescription="@string/app_name"
-                        android:tint="@color/colorTextPrimary"
+                        android:tint="@color/colorWhite"
                         android:layout_gravity="center_vertical"
                         android:src="@drawable/ic_add"
                         android:layout_width="wrap_content"
@@ -65,7 +68,7 @@
                         tools:ignore="UseAppTint" />
                     <TextView
                         android:id="@+id/save_text"
-                        android:textColor="@color/colorTextPrimary"
+                        android:textColor="@color/colorWhite"
                         android:textSize="@dimen/_15ssp"
                         android:layout_gravity="center_vertical"
                         android:text="@string/save"
@@ -75,18 +78,51 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
         <LinearLayout
-            android:layout_marginTop="@dimen/_5sdp"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <TextView
-                android:layout_margin="@dimen/_5sdp"
+            <LinearLayout
                 android:background="@drawable/action"
-                android:padding="@dimen/_10sdp"
-                android:textSize="@dimen/_13ssp"
-                android:textColor="@color/colorWhite"
-                android:text="@string/class_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:gravity="center_vertical"
+                android:layout_margin="@dimen/_5sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent">
+                    <Spinner
+                        android:layout_margin="@dimen/_2sdp"
+                        android:background="@color/colorPrimary"
+                        android:gravity="center"
+                        android:id="@+id/spinner_item"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"/>
+                </LinearLayout>
+                <TextView
+                    android:background="@color/colorWhite"
+                    android:padding="@dimen/_10sdp"
+                    android:textSize="@dimen/_13ssp"
+                    android:textColor="@color/colorTextPrimary"
+                    android:text="@string/class_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <LinearLayout
+                    android:backgroundTint="@color/colorSpinner"
+                    android:gravity="center"
+                    android:background="@drawable/time_right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+                    <Spinner
+                        android:textColor="@color/colorWhite"
+                        android:gravity="center"
+                        android:id="@+id/spinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+            </LinearLayout>
+
         </LinearLayout>
         <LinearLayout
             android:layout_marginTop="@dimen/_5sdp"
@@ -152,8 +188,8 @@
             android:padding="@dimen/_10sdp"
             android:textSize="@dimen/_12ssp"
             android:textColorHint="@color/colorTextHint"
-            android:textColor="@color/colorWhite"
-            android:background="@drawable/action"
+            android:textColor="@color/colorTextPrimary"
+            android:background="@drawable/action_white"
             android:hint="@string/subject"
             android:inputType="text"
             android:autofillHints="" />
@@ -168,8 +204,8 @@
             android:padding="@dimen/_10sdp"
             android:textSize="@dimen/_12ssp"
             android:textColorHint="@color/colorTextHint"
-            android:textColor="@color/colorWhite"
-            android:background="@drawable/action"
+            android:textColor="@color/colorTextPrimary"
+            android:background="@drawable/action_white"
             android:hint="@string/type_lecture_lab_etc"
             android:autofillHints=""
             android:inputType="text" />
@@ -184,8 +220,8 @@
             android:padding="@dimen/_10sdp"
             android:textSize="@dimen/_12ssp"
             android:textColorHint="@color/colorTextHint"
-            android:textColor="@color/colorWhite"
-            android:background="@drawable/action"
+            android:textColor="@color/colorTextPrimary"
+            android:background="@drawable/action_white"
             android:hint="@string/room"
             android:autofillHints=""
             android:inputType="text" />
@@ -200,8 +236,8 @@
             android:padding="@dimen/_10sdp"
             android:textSize="@dimen/_12ssp"
             android:textColorHint="@color/colorTextHint"
-            android:textColor="@color/colorWhite"
-            android:background="@drawable/action"
+            android:textColor="@color/colorTextPrimary"
+            android:background="@drawable/action_white"
             android:hint="@string/teacher"
             android:autofillHints=""
             android:inputType="text" />
@@ -214,8 +250,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColorHint="@color/colorTextHint"
-            android:textColor="@color/colorWhite"
-            android:background="@drawable/action"
+            android:textColor="@color/colorTextPrimary"
+            android:background="@drawable/action_white"
             android:hint="@string/contact"
             android:inputType="number"
             android:textSize="@dimen/_12ssp"
@@ -223,8 +259,8 @@
             android:autofillHints="" />
 
         <TextView
-            android:textColor="@color/colorWhite"
-            android:background="@drawable/action"
+            android:textColor="@color/colorTextPrimary"
+            android:background="@drawable/action_white"
             android:textSize="@dimen/_12ssp"
             android:text="@string/notes"
             android:padding="@dimen/_10sdp"

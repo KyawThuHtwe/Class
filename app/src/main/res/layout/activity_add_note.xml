@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".Note.AddNoteActivity">
     <LinearLayout
+        android:id="@+id/layout"
         android:background="@color/colorDivider"
         app:layout_constraintTop_toTopOf="parent"
         android:orientation="vertical"
@@ -17,7 +18,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="1dp">
             <LinearLayout
-                android:background="@android:color/white"
+                android:id="@+id/action_layout"
+                android:background="@color/colorPrimary"
                 android:gravity="center"
                 android:layout_gravity="center_vertical|center"
                 android:orientation="horizontal"
@@ -25,6 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <ImageView
+                    android:tint="@color/colorWhite"
                     android:layout_marginRight="5dp"
                     android:layout_marginLeft="5dp"
                     android:id="@+id/back"
@@ -34,7 +37,7 @@
                     android:layout_height="wrap_content"
                     android:contentDescription="@string/action" />
                 <TextView
-                    android:textColor="@color/colorTextPrimary"
+                    android:textColor="@color/colorWhite"
                     android:id="@+id/title_action"
                     android:gravity="center_vertical"
                     android:layout_gravity="center_vertical"
@@ -58,7 +61,7 @@
                     android:layout_marginStart="5dp"
                     tools:ignore="UseCompoundDrawables">
                     <ImageView
-                        android:tint="@color/colorTextPrimary"
+                        android:tint="@color/colorWhite"
                         android:layout_gravity="center_vertical"
                         android:src="@drawable/ic_add"
                         android:layout_width="wrap_content"
@@ -66,7 +69,7 @@
                         tools:ignore="UseAppTint"
                         android:contentDescription="@string/action" />
                     <TextView
-                        android:textColor="@color/colorTextPrimary"
+                        android:textColor="@color/colorWhite"
                         android:id="@+id/action"
                         android:textSize="@dimen/_14ssp"
                         android:layout_gravity="center_vertical"
@@ -82,7 +85,7 @@
             android:layout_marginLeft="@dimen/_5sdp"
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginRight="@dimen/_5sdp"
-            android:background="@drawable/action"
+            android:background="@drawable/action_white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
@@ -94,7 +97,7 @@
                 tools:ignore="UseAppTint"
                 android:contentDescription="@string/action" />
             <TextView
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/colorTextPrimary"
                 android:textSize="@dimen/_12ssp"
                 android:paddingLeft="5dp"
                 android:layout_gravity="center_vertical"
@@ -109,7 +112,7 @@
         <LinearLayout
             android:padding="@dimen/_10sdp"
             android:layout_margin="@dimen/_5sdp"
-            android:background="@drawable/action"
+            android:background="@drawable/action_white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
@@ -121,7 +124,7 @@
                 tools:ignore="UseAppTint"
                 android:contentDescription="@string/action" />
             <TextView
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/colorTextPrimary"
                 android:textSize="@dimen/_12ssp"
                 android:paddingLeft="5dp"
                 android:layout_gravity="center_vertical"
@@ -134,7 +137,7 @@
         </LinearLayout>
 
         <EditText
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/colorTextPrimary"
             android:textSize="@dimen/_12ssp"
             android:textColorHint="@color/colorTextHint"
             android:layout_margin="@dimen/_5sdp"
@@ -142,18 +145,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/_10sdp"
-            android:background="@drawable/action"
+            android:background="@drawable/action_white"
             android:hint="@string/title"
             android:autofillHints="@string/title"
             android:inputType="text" />
 
         <EditText
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/colorTextPrimary"
             android:textSize="@dimen/_12ssp"
             android:textColorHint="@color/colorTextHint"
             android:layout_margin="@dimen/_5sdp"
             android:padding="@dimen/_10sdp"
-            android:background="@drawable/action"
+            android:background="@drawable/action_white"
             android:gravity="start|top"
             android:id="@+id/subject"
             android:layout_width="match_parent"

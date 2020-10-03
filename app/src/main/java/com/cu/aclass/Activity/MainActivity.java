@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     ActionBar actionBar;
     FrameLayout frameLayout;
     @RequiresApi(api = Build.VERSION_CODES.M)
-    @SuppressLint({"RestrictedApi", "ResourceType"})
+    @SuppressLint({"RestrictedApi", "ResourceType", "UseCompatLoadingForDrawables"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setStatusBarColor(readActionBarColor());
         getWindow().setNavigationBarColor(readActionBarColor());
         frameLayout.setBackgroundColor(readLayoutColor());
-
+        smoothBottomBar.setBackgroundColor(readActionBarColor());
         smoothBottomBar.setOnItemSelectedListener(new OnItemSelectedListener() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public int readLayoutColor(){
         SharedPreferences sharedPreferences=getSharedPreferences("Color", Context.MODE_PRIVATE);
-        return sharedPreferences.getInt("LayoutColor",getResources().getColor(R.color.colorDivider));
+        return sharedPreferences.getInt("LayoutColor",getResources().getColor(R.color.colorTextHint));
     }
 
     public void LoadFragment(Fragment fragment){

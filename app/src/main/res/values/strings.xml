@@ -77,4 +77,12 @@
     <string name="apply">Apply</string>
     <string name="cancel">Cancel</string>
     <string name="customize">Customize</string>
+    <string name="time_cardview">Time CardView</string>
+    <string name="note_cardview">Note CardView</string>
+    <string name="data">Data</string>
+    <string name="start">Start</string>
+    <string name="end">End</string>
+    <string name="no_subject">No Subject</string>
+    <string name="time_add_successfully">Time Add Successfully</string>
+    <string name="no_database">No Database</string>
 </resources>

@@ -50,6 +50,7 @@
 
     </LinearLayout>
     <TextView
+        android:id="@+id/quest"
         android:textColor="@color/colorTextPrimary"
         android:paddingLeft="@dimen/_10sdp"
         android:paddingRight="@dimen/_10sdp"

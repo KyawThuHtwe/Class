@@ -90,7 +90,7 @@ public class ThuActivity extends AppCompatActivity {
                     if (res.getString(9).equals("Thursday")) {
                         if (!res.getString(3).equals("Subject")) {
                             timeAddData.add(new TimeAddData(res.getString(0), res.getString(1), res.getString(2), res.getString(3),
-                                    res.getString(4), res.getString(5), res.getString(6), res.getString(7), res.getString(8), res.getString(9)));
+                                    res.getString(4), res.getString(5), res.getString(6), res.getString(7), res.getString(8), res.getString(9), res.getString(10)));
                         }
                     }
                 }

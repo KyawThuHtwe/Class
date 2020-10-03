@@ -1,9 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorDivider"
     tools:context=".Activity.DataListActivity">
+    <LinearLayout
+        android:id="@+id/action_layout"
+        android:padding="@dimen/_5sdp"
+        android:layout_gravity="center_vertical"
+        android:background="@color/colorPrimary"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:id="@+id/back"
+            android:src="@drawable/ic_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:tint="@color/colorWhite"
+            tools:ignore="RtlHardcoded"
+            android:contentDescription="@string/app_name" />
+        <TextView
+            android:layout_marginLeft="@dimen/_10ssp"
+            android:textSize="@dimen/_14ssp"
+            android:textColor="@color/colorWhite"
+            android:text="@string/data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="RtlHardcoded" />
+        <LinearLayout
+            android:layout_weight="1"
+            android:padding="@dimen/_5sdp"
+            android:gravity="right"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:ignore="RtlHardcoded">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <Spinner
+                android:textColor="@color/colorTextPrimary"
+                android:gravity="center"
+                android:id="@+id/spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_margin="@dimen/_5sdp"
+        android:background="@drawable/action_white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <View
+            android:layout_width="@dimen/_20ssp"
+            android:layout_height="@dimen/_10ssp"/>
+        <LinearLayout
+            android:id="@+id/start"
+            android:padding="@dimen/_5sdp"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="UseCompoundDrawables">
+            <ImageView
+                android:padding="@dimen/_5sdp"
+                android:src="@drawable/ic_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/app_name" />
+            <TextView
+                android:textColor="@color/colorTextPrimary"
+                android:id="@+id/start_date"
+                android:text="@string/start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <ImageView
+            android:rotation="-180"
+            android:layout_weight="1"
+            android:src="@drawable/ic_back"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/app_name"
+            app:tint="@color/colorPrimary" />
+        <LinearLayout
+            android:id="@+id/end"
+            android:padding="@dimen/_5sdp"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="UseCompoundDrawables">
+            <ImageView
+                android:padding="@dimen/_5sdp"
+                android:src="@drawable/ic_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/app_name" />
+            <TextView
+                android:textColor="@color/colorTextPrimary"
+                android:id="@+id/end_date"
+                android:text="@string/end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <View
+            android:layout_width="@dimen/_20ssp"
+            android:layout_height="@dimen/_10ssp"/>
+    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

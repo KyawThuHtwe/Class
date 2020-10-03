@@ -3,19 +3,15 @@ package com.cu.aclass.TimeTable;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
-import android.app.UiAutomation;
 import android.content.Intent;
 import android.database.Cursor;
-import android.gesture.Gesture;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -94,7 +90,7 @@ public class MonActivity extends AppCompatActivity {
                     if(res.getString(9).equals("Monday")) {
                         if (!res.getString(3).equals("Subject")) {
                             timeAddData.add(new TimeAddData(res.getString(0), res.getString(1), res.getString(2), res.getString(3),
-                                    res.getString(4), res.getString(5), res.getString(6), res.getString(7), res.getString(8), res.getString(9)));
+                                    res.getString(4), res.getString(5), res.getString(6), res.getString(7), res.getString(8), res.getString(9), res.getString(10)));
                         }
                     }
                 }

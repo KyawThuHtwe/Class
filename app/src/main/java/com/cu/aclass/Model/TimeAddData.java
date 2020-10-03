@@ -11,8 +11,9 @@ public class TimeAddData {
     private String contact;
     private String notes;
     private String day;
+    private String spinner;
 
-    public TimeAddData(String id, String start, String end, String subject, String type, String room, String teacher, String contact, String notes, String day) {
+    public TimeAddData(String id, String start, String end, String subject, String type, String room, String teacher, String contact, String notes, String day, String spinner) {
         this.id = id;
         this.start = start;
         this.end = end;
@@ -23,6 +24,7 @@ public class TimeAddData {
         this.contact = contact;
         this.notes = notes;
         this.day = day;
+        this.spinner = spinner;
     }
 
     public String getId() {
@@ -103,5 +105,13 @@ public class TimeAddData {
 
     public void setDay(String day) {
         this.day = day;
+    }
+
+    public String getSpinner() {
+        return spinner;
+    }
+
+    public void setSpinner(String spinner) {
+        this.spinner = spinner;
     }
 }

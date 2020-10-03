@@ -1,6 +1,7 @@
 package com.cu.aclass.Activity;
 
 import android.annotation.SuppressLint;
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
@@ -78,6 +79,12 @@ public class TimeWidget extends AppWidgetProvider {
         int ids[] = AppWidgetManager.getInstance(context).getAppWidgetIds(new ComponentName(context, TimeWidget.class));
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,ids);
         context.sendBroadcast(intent);
+        /*
+        Intent intent_note=new Intent(context,MainActivity.class);
+        intent_note.putExtra("Fragment","Note");
+        PendingIntent pendingIntent_note=PendingIntent.getActivity(context,0,intent_note,0);
+        views.setOnClickPendingIntent(R.id.note_layout, pendingIntent_note);
+         */
         // Instruct the widget manager to update the widget.
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }
@@ -105,16 +112,21 @@ public class TimeWidget extends AppWidgetProvider {
                             int end_hr=Integer.parseInt(end.split(":")[0]);
                             int end_min=Integer.parseInt(end.split(":")[1]);
 
-                            if(cur_hr>=start_hr && cur_hr<=end_hr){
-                                if(cur_min>=start_min && cur_min<=end_min){
-                                    views.setTextViewText(R.id.start,res.getString(1));
-                                    views.setTextViewText(R.id.end, res.getString(2));
-                                    views.setTextViewText(R.id.subject, res.getString(3));
-                                }
+                            long cur_ts=(cur_hr*60*60)+(cur_min*60);
+                            long start_ts=(start_hr*60*60)+(start_min*60);
+                            long end_ts=(end_hr*60*60)+(end_min*60);
+
+                            if(cur_ts>=start_ts && cur_ts<=end_ts){
+                                views.setTextViewText(R.id.start,time(res.getString(1)));
+                                views.setTextViewText(R.id.end,time(res.getString(2)));
+                                views.setTextViewText(R.id.subject,res.getString(3));
+                                int spin=Integer.parseInt(res.getString(10))+1;
+                                views.setTextViewText(R.id.spinner,spin+"");
                             }else {
                                 views.setTextViewText(R.id.start,context.getResources().getString(R.string._00_00));
                                 views.setTextViewText(R.id.end,context.getResources().getString(R.string._00_00));
-                                views.setTextViewText(R.id.subject,context.getResources().getString(R.string.subject));
+                                views.setTextViewText(R.id.subject,"No Subject");
+                                views.setTextViewText(R.id.spinner,"0");
                             }
 
                         }
@@ -125,6 +137,68 @@ public class TimeWidget extends AppWidgetProvider {
         }catch (Exception e){
             Toast.makeText(context,e.getMessage(),Toast.LENGTH_SHORT).show();
         }
+        try {
+            int count=0;
+            DatabaseHelper helper=new DatabaseHelper(context);
+            Cursor res = helper.getNote();
+            if (res != null && res.getCount() > 0) {
+                while (res.moveToNext()) {
+                    String time=res.getString(4);
+                    Calendar c= Calendar.getInstance();
+                    int year_note=c.get(Calendar.YEAR);
+                    int month_note=c.get(Calendar.MONTH)+1;
+                    int day_note=c.get(Calendar.DAY_OF_MONTH);
+                    int s_year=Integer.parseInt(time.split("/")[2]);
+                    int s_month=Integer.parseInt(time.split("/")[1]);
+                    int s_day=Integer.parseInt(time.split("/")[0]);
+                    if(s_day==day_note && s_month==month_note && s_year==year_note) {
+                        count++;
+                    }
+                }
+            }
+            views.setTextViewText(R.id.note_count,count+"");
+            helper.close();
+
+        }catch (Exception e){
+            Toast.makeText(context,e.getMessage(),Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        super.onReceive(context, intent);
+    }
+    public String time(String time){
+        int hr = 0,min;
+        String s=null,des;
+        try {
+            hr=Integer.parseInt(time.split(":")[0]);
+            min=Integer.parseInt(time.split(":")[1].replaceAll("\\D+","").replaceAll("^0+",""));
+            s=min+"";
+            if(s.length()==1){
+                s="0"+s;
+            }
+            if(hr>12){
+                hr-=12;
+                des=" PM";
+            }else {
+                des=" AM";
+            }
+
+        }catch (NumberFormatException nfe){
+            if(s==null){
+                s="00";
+            }
+            if(hr>12){
+                hr-=12;
+                des=" PM";
+            }else {
+                des=" AM";
+            }
+        }
+
+        return hr+":"+s+des;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.Q)

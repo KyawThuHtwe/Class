@@ -239,35 +239,6 @@
                                 android:paddingEnd="5dp"
                                 tools:ignore="RtlSymmetry" />
                         </RelativeLayout>
-                        <RelativeLayout
-                            android:id="@+id/default_database"
-                            android:focusable="true"
-                            android:clickable="true"
-                            android:padding="10dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-                            <ImageView
-                                android:layout_centerVertical="true"
-                                android:id="@+id/default1"
-                                android:padding="5dp"
-                                android:layout_width="@dimen/_25sdp"
-                                android:layout_height="@dimen/_25sdp"
-                                android:src="@drawable/ic_database"
-                                android:contentDescription="@string/app_name"
-                                app:tint="@color/colorTime" />
-                            <TextView
-                                android:textColor="@color/colorTextPrimary"
-                                android:layout_centerVertical="true"
-                                android:layout_toRightOf="@+id/default1"
-                                android:paddingRight="5dp"
-                                android:textSize="@dimen/_12ssp"
-                                android:text="@string/default_database"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_toEndOf="@+id/default1"
-                                android:paddingEnd="5dp"
-                                tools:ignore="RtlSymmetry" />
-                        </RelativeLayout>
 
                         <RelativeLayout
                             android:focusable="true"
@@ -277,6 +248,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
                             <ImageView
+                                android:layout_marginLeft="@dimen/_2sdp"
                                 android:tint="@color/colorTime"
                                 android:layout_centerVertical="true"
                                 android:id="@+id/deleteNote1"
@@ -306,6 +278,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
                             <ImageView
+                                android:layout_marginLeft="@dimen/_2sdp"
                                 android:tint="@color/colorTime"
                                 android:layout_centerVertical="true"
                                 android:id="@+id/deleteicon1"
@@ -334,6 +307,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
                             <ImageView
+                                android:layout_marginLeft="@dimen/_2sdp"
                                 android:tint="@color/colorTime"
                                 android:layout_centerVertical="true"
                                 android:id="@+id/deleteicon2"

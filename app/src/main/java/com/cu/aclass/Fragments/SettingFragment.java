@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cu.aclass.Activity.DataListActivity;
 import com.cu.aclass.DatabaseHelper.DatabaseHelper;
 import com.cu.aclass.Activity.MainActivity;
 import com.cu.aclass.R;
@@ -33,8 +35,6 @@ public class SettingFragment extends Fragment {
     public SettingFragment() {
         // Required empty public constructor
     }
-    int a_color,l_color;
-
     public static SettingFragment newInstance() {
         return new SettingFragment();
     }
@@ -44,17 +44,17 @@ public class SettingFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_setting, container, false);
-        RelativeLayout timetable,attendance,note,default_database,data_list;
+        RelativeLayout timetable,attendance,note,database_list;
         final View theme;
 
         timetable=view.findViewById(R.id.timetable);
         attendance=view.findViewById(R.id.rollcall);
         note=view.findViewById(R.id.note);
-        default_database=view.findViewById(R.id.default_database);
-        default_database.setOnClickListener(new View.OnClickListener() {
+        database_list=view.findViewById(R.id.database_list);
+        database_list.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                confirmDelete("Default");
+                Objects.requireNonNull(getContext()).startActivity(new Intent(getContext(), DataListActivity.class));
             }
         });
 
@@ -87,19 +87,83 @@ public class SettingFragment extends Fragment {
 
         return view;
     }
-    boolean r1=false,r2=false;
     public void createTheme(final View v){
         try {
             final androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(v.getContext(),R.style.AlertDialogTheme);
             View view = LayoutInflater.from(v.getContext()).inflate(R.layout.theme_layout, (LinearLayout) v.findViewById(R.id.layout));
             builder.setView(view);
-            final LinearLayout linearLayout=view.findViewById(R.id.layout);
             final View actionbar_color=view.findViewById(R.id.actionBar_color);
             final View layout_color=view.findViewById(R.id.layout_color);
+            final View time_color=view.findViewById(R.id.time_color);
+            final View note_color=view.findViewById(R.id.note_color);
+            final View report_color=view.findViewById(R.id.report_color);
 
             actionbar_color.setBackgroundColor(readActionBarColor());
-            linearLayout.setBackgroundColor(readActionBarColor());
             layout_color.setBackgroundColor(readLayoutColor());
+            time_color.setBackgroundColor(readTimeColor());
+            note_color.setBackgroundColor(readNoteColor());
+            report_color.setBackgroundColor(readReportColor());
+            report_color.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AmbilWarnaDialog colorDialog = new AmbilWarnaDialog(getContext(), readTimeColor(), new AmbilWarnaDialog.OnAmbilWarnaListener() {
+                        @Override
+                        public void onCancel(AmbilWarnaDialog dialog) {
+
+                        }
+
+                        @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+                        @SuppressLint("ResourceType")
+                        @Override
+                        public void onOk(AmbilWarnaDialog dialog, int color) {
+                            report_color.setBackgroundColor(color);
+                            saveReportColor(color);
+                        }
+                    });
+                    colorDialog.show();
+                }
+            });
+            time_color.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AmbilWarnaDialog colorDialog = new AmbilWarnaDialog(getContext(), readTimeColor(), new AmbilWarnaDialog.OnAmbilWarnaListener() {
+                        @Override
+                        public void onCancel(AmbilWarnaDialog dialog) {
+
+                        }
+
+                        @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+                        @SuppressLint("ResourceType")
+                        @Override
+                        public void onOk(AmbilWarnaDialog dialog, int color) {
+                            time_color.setBackgroundColor(color);
+                            saveTimeColor(color);
+                        }
+                    });
+                    colorDialog.show();
+                }
+            });
+            note_color.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AmbilWarnaDialog colorDialog = new AmbilWarnaDialog(getContext(), readTimeColor(), new AmbilWarnaDialog.OnAmbilWarnaListener() {
+                        @Override
+                        public void onCancel(AmbilWarnaDialog dialog) {
+
+                        }
+
+                        @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+                        @SuppressLint("ResourceType")
+                        @Override
+                        public void onOk(AmbilWarnaDialog dialog, int color) {
+                            note_color.setBackgroundColor(color);
+                            saveNoteColor(color);
+                        }
+                    });
+                    colorDialog.show();
+                }
+            });
+
             RadioGroup radioGroup=view.findViewById(R.id.radioGroup);
             radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                 @Override
@@ -108,18 +172,27 @@ public class SettingFragment extends Fragment {
                         case R.id.custom:
                             actionbar_color.setEnabled(true);
                             layout_color.setEnabled(true);
-                            a_color=readActionBarColor();
-                            l_color=readLayoutColor();
+                            time_color.setEnabled(true);
+                            note_color.setEnabled(true);
+                            report_color.setEnabled(true);
                             break;
                         case R.id.original_theme:
                             actionbar_color.setEnabled(false);
                             layout_color.setEnabled(false);
+                            time_color.setEnabled(false);
+                            note_color.setEnabled(false);
+                            report_color.setEnabled(false);
                             actionbar_color.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-                            linearLayout.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-                            layout_color.setBackgroundColor(getResources().getColor(R.color.colorDivider));
-                            a_color=getResources().getColor(R.color.colorPrimary);
-                            l_color=getResources().getColor(R.color.colorDivider);
-                            r1=true;r2=true;
+                            layout_color.setBackgroundColor(getResources().getColor(R.color.colorTextHint));
+                            time_color.setBackgroundColor(getResources().getColor(R.color.colorWhite));
+                            note_color.setBackgroundColor(getResources().getColor(R.color.colorDivider));
+                            report_color.setBackgroundColor(getResources().getColor(R.color.colorDivider));
+                            saveActionBarColor(getResources().getColor(R.color.colorPrimary));
+                            saveLayoutColor(getResources().getColor(R.color.colorTextHint));
+                            saveTimeColor(getResources().getColor(R.color.colorWhite));
+                            saveNoteColor(getResources().getColor(R.color.colorDivider));
+                            saveReportColor(getResources().getColor(R.color.colorDivider));
+
                             break;
                     }
                 }
@@ -139,12 +212,10 @@ public class SettingFragment extends Fragment {
                         @Override
                         public void onOk(AmbilWarnaDialog dialog, int color) {
                             actionbar_color.setBackgroundColor(color);
-                            linearLayout.setBackgroundColor(color);
-                            a_color = color;
+                            saveActionBarColor(color);
                         }
                     });
                     colorDialog.show();
-                    r1=true;
                 }
             });
             layout_color.setOnClickListener(new View.OnClickListener() {
@@ -161,41 +232,24 @@ public class SettingFragment extends Fragment {
                         @Override
                         public void onOk(AmbilWarnaDialog dialog, int color) {
                             layout_color.setBackgroundColor(color);
-                            l_color = color;
+                            saveLayoutColor(color);
                         }
                     });
                     colorDialog.show();
-                    r2=true;
                 }
             });
 
             TextView ok = view.findViewById(R.id.apply);
-            TextView cancel = view.findViewById(R.id.cancel);
             final androidx.appcompat.app.AlertDialog dialog = builder.create();
             dialog.show();
-            cancel.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    dialog.dismiss();
-                }
-            });
+            dialog.setCancelable(false);
             ok.setOnClickListener(new View.OnClickListener() {
                 @RequiresApi(api = Build.VERSION_CODES.M)
                 @Override
                 public void onClick(View v) {
-                    if(r1 && r2){
-                        saveActionBarColor(a_color);
-                        saveLayoutColor(l_color);
-                        dialog.dismiss();
-                        getContext().startActivity(new Intent(getContext(), MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK));
-                    }else {
-                        if(!r1){
-                            Toast.makeText(getContext(),"ActionBar set Color",Toast.LENGTH_SHORT).show();
-                        }else {
-                            Toast.makeText(getContext(),"Layout set Color",Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                    }
+                    dialog.dismiss();
+                    getContext().startActivity(new Intent(getContext(), MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK));
+                }
             });
         }catch (Exception e){
             Toast.makeText(v.getContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
@@ -215,6 +269,28 @@ public class SettingFragment extends Fragment {
         return sharedPreferences.getInt("ActionBarColor",getResources().getColor(R.color.colorPrimary));
     }
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public void saveTimeColor(int color){
+        SharedPreferences sharedPreferences= Objects.requireNonNull(getContext()).getSharedPreferences("Color", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor=sharedPreferences.edit();
+        editor.putInt("TimeColor",color).apply();
+    }
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public int readTimeColor(){
+        SharedPreferences sharedPreferences= Objects.requireNonNull(getContext()).getSharedPreferences("Color", Context.MODE_PRIVATE);
+        return sharedPreferences.getInt("TimeColor",getResources().getColor(R.color.colorWhite));
+    }
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public void saveNoteColor(int color){
+        SharedPreferences sharedPreferences= Objects.requireNonNull(getContext()).getSharedPreferences("Color", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor=sharedPreferences.edit();
+        editor.putInt("NoteColor",color).apply();
+    }
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public int readNoteColor(){
+        SharedPreferences sharedPreferences= Objects.requireNonNull(getContext()).getSharedPreferences("Color", Context.MODE_PRIVATE);
+        return sharedPreferences.getInt("NoteColor",getResources().getColor(R.color.colorDivider));
+    }
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void saveLayoutColor(int color){
         SharedPreferences sharedPreferences= Objects.requireNonNull(getContext()).getSharedPreferences("Color", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor=sharedPreferences.edit();
@@ -223,46 +299,94 @@ public class SettingFragment extends Fragment {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public int readLayoutColor(){
         SharedPreferences sharedPreferences= Objects.requireNonNull(getContext()).getSharedPreferences("Color", Context.MODE_PRIVATE);
-        return sharedPreferences.getInt("LayoutColor",getResources().getColor(R.color.colorDivider));
+        return sharedPreferences.getInt("LayoutColor",getResources().getColor(R.color.colorTextHint));
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public void saveReportColor(int color){
+        SharedPreferences sharedPreferences= Objects.requireNonNull(getContext()).getSharedPreferences("Color", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor=sharedPreferences.edit();
+        editor.putInt("ReportColor",color).apply();
+    }
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public int readReportColor(){
+        SharedPreferences sharedPreferences= Objects.requireNonNull(getContext()).getSharedPreferences("Color", Context.MODE_PRIVATE);
+        return sharedPreferences.getInt("ReportColor",getResources().getColor(R.color.colorDivider));
+    }
 
+    @SuppressLint("SetTextI18n")
     public void deleteTimeTable(){
         DatabaseHelper helper=new DatabaseHelper(getContext());
         try{
             boolean result=helper.deleteTimeTable();
             if(result){
-                Toast.makeText(getContext(),"Success",Toast.LENGTH_SHORT).show();
+                View view = LayoutInflater.from(getContext()).inflate(R.layout.toast_time_add_successful, null);
+                Toast toast = Toast.makeText(getContext(), "Deleted Successfully", Toast.LENGTH_SHORT);
+                LinearLayout linearLayout = view.findViewById(R.id.layout);
+                linearLayout.setBackgroundColor(readActionBarColor());
+                TextView type=view.findViewById(R.id.type);
+                type.setText("Deleted Successfully");
+                toast.setGravity(Gravity.BOTTOM, 0, 100);
+                toast.setView(view);
+                toast.show();
             }else {
-                Toast.makeText(getContext(),"No database",Toast.LENGTH_SHORT).show();
-            }
+                View view = LayoutInflater.from(getContext()).inflate(R.layout.toast_no_database, null);
+                Toast toast = Toast.makeText(getContext(), "No database", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.BOTTOM, 0, 100);
+                toast.setView(view);
+                toast.show();            }
         }catch (Exception e){
             Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
         }
     }
+    @SuppressLint("SetTextI18n")
     public void deleteNote(){
         DatabaseHelper helper=new DatabaseHelper(getContext());
         try{
             boolean result=helper.deleteNoteTable();
             if(result){
-                Toast.makeText(getContext(),"Success",Toast.LENGTH_SHORT).show();
+                View view = LayoutInflater.from(getContext()).inflate(R.layout.toast_time_add_successful, null);
+                Toast toast = Toast.makeText(getContext(), "Deleted Successfully", Toast.LENGTH_SHORT);
+                LinearLayout linearLayout = view.findViewById(R.id.layout);
+                linearLayout.setBackgroundColor(readActionBarColor());
+                TextView type=view.findViewById(R.id.type);
+                type.setText("Deleted Successfully");
+                toast.setGravity(Gravity.BOTTOM, 0, 100);
+                toast.setView(view);
+                toast.show();
             }else {
-                Toast.makeText(getContext(),"No database",Toast.LENGTH_SHORT).show();
+                View view = LayoutInflater.from(getContext()).inflate(R.layout.toast_no_database, null);
+                Toast toast = Toast.makeText(getContext(), "No database", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.BOTTOM, 0, 100);
+                toast.setView(view);
+                toast.show();
             }
         }catch (Exception e){
             Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
         }
     }
 
+    @SuppressLint("SetTextI18n")
     public void deleteAttendanceTable(){
         DatabaseHelper helper=new DatabaseHelper(getContext());
         try{
             boolean result=helper.deleteAttendanceTable();
             if(result){
-                Toast.makeText(getContext(),"Success",Toast.LENGTH_SHORT).show();
+                View view = LayoutInflater.from(getContext()).inflate(R.layout.toast_time_add_successful, null);
+                Toast toast = Toast.makeText(getContext(), "Deleted Successfully", Toast.LENGTH_SHORT);
+                LinearLayout linearLayout = view.findViewById(R.id.layout);
+                linearLayout.setBackgroundColor(readActionBarColor());
+                TextView type=view.findViewById(R.id.type);
+                type.setText("Deleted Successfully");
+                toast.setGravity(Gravity.BOTTOM, 0, 100);
+                toast.setView(view);
+                toast.show();
             }else {
-                Toast.makeText(getContext(),"No database",Toast.LENGTH_SHORT).show();
-            }
+                View view = LayoutInflater.from(getContext()).inflate(R.layout.toast_no_database, null);
+                Toast toast = Toast.makeText(getContext(), "No database", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.BOTTOM, 0, 100);
+                toast.setView(view);
+                toast.show();            }
         }catch (Exception e){
             Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
         }
@@ -277,10 +401,6 @@ public class SettingFragment extends Fragment {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     switch (table) {
-                        case "Default":
-                            deleteTimeTable();
-                            deleteNote();
-                            deleteAttendanceTable();
                         case "TimeTable":
                             deleteTimeTable();
                             deleteAttendanceTable();
